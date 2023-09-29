@@ -28,8 +28,7 @@ public abstract class AbstractDico implements IDictionary{
             throw
                 new Exception("la pair clé existe dans le dico");
         }else{
-            this.setkeys(key);
-            this.setvalues(value);
+            this.setDico(key,value);
         }
     }
 
@@ -49,14 +48,8 @@ public abstract class AbstractDico implements IDictionary{
     }
 
     @Override
-    public void setkeys(Object key){
+    public void setDico(Object key,Object value){
         this.keys = Arrays.copyOf(this.keys, this.keys.length + 1);
-        this.keys[this.keys.length - 1] = key;
-    }
-
-    @Override
-    public void setvalues(Object value){
         this.values = Arrays.copyOf(this.values, this.values.length + 1);
-        this.values[this.values.length - 1] = value;
     }
 }

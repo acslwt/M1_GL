@@ -6,33 +6,32 @@ public class SortedDico extends AbstractDico{
         values = new Object[0];
     }
 
-    @Override
-    public int indexOf(Object key){
-        return -1;
-    }
-
-    @Override
+    //Recherche dichotomique
     @SuppressWarnings("unchecked")
-    public Object get(Object key) throws Exception{
-        int i = this.size()/2;
-        int final_index = 0;
-        Comparable<Object> researched_key = (Comparable<Object>) key;
-        Object[] current_tab_keys = this.keys;
-        while(current_tab_keys[i]!=key){
-            System.out.println(Arrays.toString(current_tab_keys));
-            Comparable<Object> current_key = (Comparable<Object>) current_tab_keys[i];
-            if(current_key.compareTo(researched_key)>=0){
-                i = i/2;
-                current_tab_keys = Arrays.copyOfRange(current_tab_keys, 0, i);
-                System.out.println("Premiere moitié "+Arrays.toString(current_tab_keys));
+    public int indexOf(Object key){
 
-                final_index = i;
-            }else {
-                current_tab_keys = Arrays.copyOfRange(current_tab_keys, i, this.size());
-                System.out.println("Deuxième moitié " + Arrays.toString(current_tab_keys));
-                final_index = i + current_tab_keys.length/2;
+        Comparable<Object> researched_key = (Comparable<Object>) key;
+
+        int first = 0;
+        int last = this.size();
+
+        int middle = (first+last)/2;
+
+        while(first<=last){
+            Comparable<Object> current_key = (Comparable<Object>) this.keys[middle];
+
+            if(current_key.compareTo(researched_key)>0){
+                first = middle+1;
+            }else if(current_key==researched_key){
+                return middle;
+            }else{
+                last = middle-1;
+            }
+            middle = (first + last)/2;
+            if(first>last){
+                return -1;
             }
         }
-        return final_index;
+        return -2;
     }
 }

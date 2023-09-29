@@ -4,6 +4,5 @@ public interface IDictionary{
     public int size();
     public Boolean isEmpty();
     public Boolean containsKey(Object key);
-    public void setkeys(Object key);
-    public void setvalues(Object value);
+    public void setDico(Object key,Object value);
 }

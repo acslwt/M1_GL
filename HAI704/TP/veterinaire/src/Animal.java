@@ -6,21 +6,27 @@ public class Animal extends UnicastRemoteObject implements Ianimal {
     private String nom_maitre;
     private String espece;
     private String race;
+    private DossierSuivi dossier_suivi;
 
-    public Animal(String nom, String nom_maitre, String espece, String race) throws RemoteException {
+    public Animal(String nom, String nom_maitre, String espece, String race,DossierSuivi dossier_suivi) throws RemoteException {
         this.nom = nom;
         this.nom_maitre = nom_maitre;
         this.espece = espece;
         this.race = race;
+        this.dossier_suivi = dossier_suivi;
     }
 
+    @Override
+    public DossierSuivi getDossierSuivi(){
+        return this.dossier_suivi;
+    }
     @Override
     public String getNom() throws RemoteException{
         return this.nom;
     }
 
     @Override
-    public String getNom_maitre() throws RemoteException{
+    public String getNomMaitre() throws RemoteException{
         return this.nom_maitre;
     }
 

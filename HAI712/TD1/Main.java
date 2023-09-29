@@ -42,20 +42,21 @@ public class Main {
 
         System.out.println("__________SORTED DICO TEST_________");
 
-        IDictionary sorted_dico = new SortedDico();
+        SortedDico sorted_dico = new SortedDico();
 
         try{
-            sorted_dico.put(0,"a");
-            sorted_dico.put(1,"b");
-            sorted_dico.put(2,"c");
-            sorted_dico.put(3,"d");
-            sorted_dico.put(4,"e");
+            sorted_dico.put(5,"a");
+            sorted_dico.put(4,"b");
+            sorted_dico.put(3,"c");
+            sorted_dico.put(2,"d");
+            sorted_dico.put(1,"e");
+            sorted_dico.put(0,"f");
         }catch (Exception e){
             System.out.println("Message d'erreur : "+e);
         }
 
         try {
-            System.out.println(sorted_dico.get(3));
+            System.out.println(sorted_dico.indexOf(0));
         }catch (Exception e){
             System.out.println("Message d'erreur : "+e);
         }

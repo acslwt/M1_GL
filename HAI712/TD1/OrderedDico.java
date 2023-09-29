@@ -6,6 +6,11 @@ public class OrderedDico extends AbstractDico{
 
     @Override
     public int indexOf(Object key){
+        for(int i =0; i<this.keys.length;i++){
+            if(this.keys[i]==key){
+                return i;
+            }
+        }
         return -1;
     }
 }
