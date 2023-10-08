@@ -1,5 +1,6 @@
 # Default ignored files
 /shelf/
+/gen/
 /workspace.xml
 # Editor-based HTTP Client requests
 /httpRequests/

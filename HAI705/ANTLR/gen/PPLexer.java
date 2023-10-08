@@ -1,4 +1,4 @@
-// Generated from D:/Cours/M1/M1_GL/HAI705/ANTLR/Hello.g4 by ANTLR 4.13.1
+// Generated from D:/Cours/M1/M1_GL/HAI705/ANTLR/PP.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
@@ -9,7 +9,7 @@ import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.misc.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast", "CheckReturnValue", "this-escape"})
-public class HelloLexer extends Lexer {
+public class PPLexer extends Lexer {
 	static { RuntimeMetaData.checkVersion("4.13.1", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
@@ -93,13 +93,13 @@ public class HelloLexer extends Lexer {
 	}
 
 
-	public HelloLexer(CharStream input) {
+	public PPLexer(CharStream input) {
 		super(input);
 		_interp = new LexerATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 
 	@Override
-	public String getGrammarFileName() { return "Hello.g4"; }
+	public String getGrammarFileName() { return "PP.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }

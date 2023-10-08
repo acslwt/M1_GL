@@ -5,14 +5,14 @@ public class Serveur {
     public Serveur(){}
     public static void main(String[] args) {
         try{
-            DossierSuivi dossier_rex = new DossierSuivi();
+            DossierSuivi dossier_rex = new DossierSuivi("BON");
             Animal chien = new Animal("Rex","Job","Chien","Malinois",dossier_rex);
             dossier_rex.addAnimal(chien);
-            System.out.println();
             Registry registry = LocateRegistry.createRegistry(1099);
             if (registry==null){
                 System.err.println("RmiRegistery not found");
             }else{
+                registry.rebind("dossier_rex",dossier_rex);
                 registry.rebind("chien1",chien);
                 System.err.println("Serveur pret.");
             }

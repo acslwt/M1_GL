@@ -13,4 +13,9 @@ public class OrderedDico extends AbstractDico{
         }
         return -1;
     }
+
+    @Override
+    public void newIndexOf(Object key, Object value) {
+
+    }
 }

@@ -7,6 +7,7 @@ public class DossierSuivi extends UnicastRemoteObject implements IdossierSuivi{
     public DossierSuivi(String etat) throws RemoteException{
         this.etat = etat;
     }
+
     @Override
     public String toString(){
         try{

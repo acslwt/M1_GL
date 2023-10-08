@@ -17,7 +17,7 @@ public class Animal extends UnicastRemoteObject implements Ianimal {
     }
 
     @Override
-    public DossierSuivi getDossierSuivi(){
+    public IdossierSuivi getDossierSuivi(){
         return this.dossier_suivi;
     }
     @Override

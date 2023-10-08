@@ -5,6 +5,6 @@ public interface Ianimal extends Remote{
     String getNomMaitre() throws RemoteException;
     String getEspece() throws RemoteException;
     String getRace() throws RemoteException;
-    DossierSuivi getDossierSuivi() throws RemoteException;
+    IdossierSuivi getDossierSuivi() throws RemoteException;
 
 }

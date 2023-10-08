@@ -11,6 +11,8 @@ public abstract class AbstractDico implements IDictionary{
 
     public abstract int indexOf(Object key);
 
+    public abstract void newIndexOf(Object key,Object value);
+
     @Override
     public Object get(Object key) throws Exception{
         int i  = this.indexOf(key);

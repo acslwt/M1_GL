@@ -45,20 +45,26 @@ public class Main {
         SortedDico sorted_dico = new SortedDico();
 
         try{
-            sorted_dico.put(5,"a");
-            sorted_dico.put(4,"b");
-            sorted_dico.put(3,"c");
-            sorted_dico.put(2,"d");
-            sorted_dico.put(1,"e");
-            sorted_dico.put(0,"f");
+
+            sorted_dico.newIndexOf(5,"a");
+            sorted_dico.newIndexOf(3,"b");
+
         }catch (Exception e){
             System.out.println("Message d'erreur : "+e);
         }
 
+        System.out.println(sorted_dico.size());
+        try{
+            System.out.println(sorted_dico.get(4));
+        }
+        catch(Exception e) {
+            System.out.println(e);
+        }
         try {
-            System.out.println(sorted_dico.indexOf(0));
+
+            System.out.println(sorted_dico.indexOf(2));
         }catch (Exception e){
-            System.out.println("Message d'erreur : "+e);
+            System.out.println("Message d'erreur en recherche : "+e);
         }
 
     }
