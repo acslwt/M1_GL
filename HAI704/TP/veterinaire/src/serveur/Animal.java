@@ -1,3 +1,6 @@
+package serveur;
+
+import common.*;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 

@@ -1,6 +1,9 @@
+package client;
+
 import java.rmi.Remote;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import common.*;
 
 public class Client {
     private Client() {}

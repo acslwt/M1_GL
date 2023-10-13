@@ -1,3 +1,7 @@
+package common;
+
+import serveur.Animal;
+
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 

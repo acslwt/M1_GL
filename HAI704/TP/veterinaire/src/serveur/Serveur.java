@@ -1,3 +1,5 @@
+package serveur;
+
 import java.rmi.registry.Registry;
 import java.rmi.registry.LocateRegistry;
 
@@ -10,7 +12,7 @@ public class Serveur {
             dossier_rex.addAnimal(chien);
             Registry registry = LocateRegistry.createRegistry(1099);
             if (registry==null){
-                System.err.println("RmiRegistery not found");
+                System.err.println("Rmi_Registry not found");
             }else{
                 registry.rebind("dossier_rex",dossier_rex);
                 registry.rebind("chien1",chien);
