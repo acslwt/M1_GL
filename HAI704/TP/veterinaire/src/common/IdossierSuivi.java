@@ -6,5 +6,9 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 public interface IdossierSuivi extends Remote {
-    void addAnimal(Animal animal) throws RemoteException;
+    String getEtat() throws RemoteException;
+
+    //void addAnimal(Animal animal) throws RemoteException;
+
+    void setEtat(String etat);
 }

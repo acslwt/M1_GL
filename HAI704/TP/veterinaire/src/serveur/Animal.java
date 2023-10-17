@@ -7,11 +7,11 @@ import java.rmi.server.UnicastRemoteObject;
 public class Animal extends UnicastRemoteObject implements Ianimal {
     private String nom;
     private String nom_maitre;
-    private String espece;
+    private Espece espece;
     private String race;
     private DossierSuivi dossier_suivi;
 
-    public Animal(String nom, String nom_maitre, String espece, String race,DossierSuivi dossier_suivi) throws RemoteException {
+    public Animal(String nom, String nom_maitre, Espece espece, String race,DossierSuivi dossier_suivi) throws RemoteException {
         this.nom = nom;
         this.nom_maitre = nom_maitre;
         this.espece = espece;
@@ -34,7 +34,7 @@ public class Animal extends UnicastRemoteObject implements Ianimal {
     }
 
     @Override
-    public String getEspece() throws RemoteException{
+    public Espece getEspece() throws RemoteException{
         return this.espece;
     }
 

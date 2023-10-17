@@ -8,8 +8,9 @@ public class Serveur {
     public static void main(String[] args) {
         try{
             DossierSuivi dossier_rex = new DossierSuivi("BON");
-            Animal chien = new Animal("Rex","Job","Chien","Malinois",dossier_rex);
-            dossier_rex.addAnimal(chien);
+            Espece espece_chien = new Espece();
+            Animal chien = new Animal("Rex","Job",espece_chien,"Malinois",dossier_rex);
+            //dossier_rex.addAnimal(chien);
             Registry registry = LocateRegistry.createRegistry(1099);
             if (registry==null){
                 System.err.println("Rmi_Registry not found");
