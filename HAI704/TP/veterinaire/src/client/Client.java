@@ -1,12 +1,15 @@
 package client;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
+
 import common.*;
 
-public class Client {
-    private Client() {}
+public class Client extends UnicastRemoteObject implements Iclient{
+    private Client() throws RemoteException{}
 
     public static void main(String[] args){
         try{
@@ -19,5 +22,10 @@ public class Client {
             System.err.println("Client exception: " + e);
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void alerte(String message) throws RemoteException {
+
     }
 }
