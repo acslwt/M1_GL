@@ -1,17 +1,16 @@
-class Arete {
-    private Sommet sommet1;
-    private Sommet sommet2;
+public class Arete {
+    private Sommet sommets[] = new Sommet[2];
 
-    public Arete(Sommet sommet1, Sommet sommet2) {
-        this.sommet1 = sommet1;
-        this.sommet2 = sommet2;
+    Arete(Sommet s1, Sommet s2){
+        this.sommets[0] = s1;
+        this.sommets[1] = s2;
     }
 
-    public Sommet getSommet1() {
-        return sommet1;
+    public boolean estLieA(Sommet s) {
+        return (sommets[0].equals(s)|| sommets[1].equals(s));
     }
 
-    public Sommet getSommet2() {
-        return sommet2;
+    public Sommet[] getSommets() {
+        return sommets;
     }
 }
