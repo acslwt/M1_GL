@@ -7,7 +7,7 @@ import java.util.List;
 public class Application {
 	public static void main(String[] args) {
 
-/*		//CREATION DE L'HOTEL
+		/*//CREATION DE L'HOTEL
 		System.out.println("________HOTEL TRIOLET________");
 		Adresse adresse_triolet = new Adresse("France","Montpellier","Avenue Augustin Fliche",75,12,15);
 		Hotel hotel = new Hotel("Triolet",adresse_triolet,3);
@@ -34,6 +34,7 @@ public class Application {
 		//RESERVATION CLIENTS
 		hotel.reserver(client1, "2023- 2- 3", "2023-2-8", 3);
 		hotel.reserver(client2,"2023-2-4","2023-2-7", 3);*/
+
 	}
 	
 }

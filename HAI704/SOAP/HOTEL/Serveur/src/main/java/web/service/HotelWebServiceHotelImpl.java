@@ -10,6 +10,10 @@ public class HotelWebServiceHotelImpl implements HotelWebService{
 
     public HotelWebServiceHotelImpl(){}
 
+    public HotelWebServiceHotelImpl(Hotel hotel){
+        this.hotel = hotel;
+    }
+
     @Override
     public ArrayList<Chambre> getChambres(){
         return hotel.getChambres();
