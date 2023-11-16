@@ -24,9 +24,12 @@ public class Hotel {
         this.etoiles = etoiles;
     }
 
-    @XmlElement
     public ArrayList<Chambre> getChambres() {
         return chambres;
+    }
+
+    public Chambre getChambre(int i){
+        return this.chambres.get(i);
     }
 
     public void setChambres(ArrayList<Chambre> chambres) {
@@ -44,7 +47,6 @@ public class Hotel {
         System.out.println("Chambre ajouter avec succes.");
     }
 
-    @XmlElement
     public int getEtoiles() {
         return etoiles;
     }
@@ -53,7 +55,6 @@ public class Hotel {
         this.etoiles = etoiles;
     }
 
-    @XmlElement
     public String getNom() {
         return nom;
     }
@@ -62,22 +63,33 @@ public class Hotel {
         this.nom = nom;
     }
 
-    @XmlElement
     public Adresse getAdresse() {
         return adresse;
     }
 
-    public void reserver(Client client, String debutS, String finS,int nombre_lits){
+    public ArrayList<Chambre> chambreDisponible(Client client, String debutS, String finS,int nombre_lits){
         LocalDate debut = LocalDate.parse(debutS);
         LocalDate fin = LocalDate.parse(finS);
+        ArrayList<Chambre> liste_chambre= new ArrayList<Chambre>();
         for(Chambre current_chambre : chambres){
             if(current_chambre.estDisponible(debutS, finS) && current_chambre.getLits()==nombre_lits){
-                Reservation reservation_client = new Reservation(client, this, debutS, finS, current_chambre);
-                current_chambre.addReservation(reservation_client);
-                System.out.println("Chambre réserver avec succès");
-                return;
+                liste_chambre.add(current_chambre);
             }
         }
-        System.out.println("Aucune chambre disponible à cette date");
+        return liste_chambre;
+    }
+
+    public int reserver(int numero_Chambre, Client client, String debutS, String finS){
+        Chambre chambre = this.getChambre(numero_Chambre);
+        if(chambre.estDisponible(debutS,finS)) {
+            Reservation reservation_client = new Reservation(client, this, debutS, finS, chambre);
+            chambre.addReservation(reservation_client);
+            System.out.println("Chambre réserver avec succès.");
+            return 1;
+        }else{
+            System.out.println("Chambre non disponible à cette date.");
+            return 0;
+        }
+
     }
 }

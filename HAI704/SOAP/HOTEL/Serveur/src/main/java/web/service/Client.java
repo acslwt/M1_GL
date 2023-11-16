@@ -3,7 +3,6 @@ package web.service;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
 public class Client {
 	
 	private String nom;
@@ -21,7 +20,6 @@ public class Client {
         this.carteCredit = carteCredit;
     }
 
-	@XmlElement
 	public String getNom() {
 		return nom;
 	}
@@ -30,7 +28,6 @@ public class Client {
 		this.nom = nom;
 	}
 
-	@XmlElement
 	public String getPrenom() {
 		return prenom;
 	}
@@ -39,7 +36,6 @@ public class Client {
 		this.prenom = prenom;
 	}
 
-	@XmlElement
 	public CarteCredit getCarteCredit() {
 		return carteCredit;
 	}

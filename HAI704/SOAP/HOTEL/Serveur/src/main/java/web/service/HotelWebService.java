@@ -8,6 +8,8 @@ import java.util.ArrayList;
 public interface HotelWebService {
 
     @WebMethod
+    String chambreToString(int i);
+    @WebMethod
     ArrayList<Chambre> getChambres();
     @WebMethod
     int getEtoiles();
@@ -16,6 +18,8 @@ public interface HotelWebService {
     @WebMethod
     Adresse getAdresse();
     @WebMethod
-    void reserver(Client client, String debut, String fin, int nombre_lits);
+    ArrayList<Chambre> chambreDisponible(Client client, String debutS, String finS,int nombre_lits);
+    @WebMethod
+    int reserver(int numero,Client client, String debut, String fin);
 
 }

@@ -26,25 +26,23 @@ public class Chambre {
         this.prix = prixNuit;
     }
 
-	@XmlElement
 	public int getNumero() {
 		return numero;
 	}
 
-	public void setNumero(int numero) {
+	public void setNumero(int numero){
 		this.numero = numero;
 	}
 
-	@XmlElement
-	public int getLits() {
+	public int getLits(){
 		return lits;
 	}
 
-	public void setLits(int lits) {
+	public void setLits(int lits){
 		this.lits = lits;
 	}
 
-	public boolean estDisponible(String debutS, String finS) {
+	public boolean estDisponible(String debutS, String finS){
 
 		LocalDate debut = LocalDate.parse(debutS);
 		LocalDate fin = LocalDate.parse(finS);
@@ -60,8 +58,6 @@ public class Chambre {
 
 	}
 
-	@XmlElementWrapper(name = "disponibilite")
-	@XmlElement(name = "reservation")
 	public ArrayList<Reservation> getDisponibilite(){
 		return date_occupation;
 	}
@@ -70,7 +66,6 @@ public class Chambre {
 		this.date_occupation = date_occupation;
 	}
 
-	@XmlElement
 	public double getPrix() {
 		return prix;
 	}
