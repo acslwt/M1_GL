@@ -3,11 +3,10 @@ package main;
 import web.service.Chambre;
 import web.service.Hotel;
 import web.service.HotelWebService;
+import web.service.Reservation;
+import web.service.Client;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,7 +18,7 @@ public class Agence {
     private final int id_agence;
     private String nom_agence;
     private String mot_de_passe;
-    private HashMap<HotelWebService, String> liste_hotels = new HashMap<HotelWebService, String>();
+    private HashMap<HotelWebService, Double> liste_hotels = new HashMap<HotelWebService, Double>();
 
     public Agence(){
         this.id_agence = 0;
@@ -45,19 +44,19 @@ public class Agence {
         this.nom_agence = nom_agence;
     }
 
-    public HashMap<HotelWebService, String> getListeHotels() {
+    public HashMap<HotelWebService, Double> getListeHotels() {
         return liste_hotels;
     }
 
-    public void setListeHotels(HashMap<HotelWebService, String> liste_hotels) {
+    public void setListeHotels(HashMap<HotelWebService, Double> liste_hotels) {
         this.liste_hotels = liste_hotels;
     }
 
-    public void addListeHotels(HotelWebService hotel, String url){
-        this.liste_hotels.put(hotel,url);
+    public void addListeHotels(HotelWebService hotel, Double taux){
+        this.liste_hotels.put(hotel,taux);
     }
 
-    public static void hotelFinder(Client client) {
+    public void hotelFinder(Client client) {
         try  {
             Scanner textScanner = new Scanner(System.in);
             Scanner intScanner = new Scanner(System.in);
@@ -73,20 +72,20 @@ public class Agence {
             int etoiles = intScanner.nextInt();
             System.out.println("Nous recherchons les meilleurs offres pour vous...\n");
 
-            HashMap<Hotel, Double> hotels = rechercher(pays,nombre_lits,debutS,finS, etoiles);
+            HashMap<HotelWebService, Double> hotels = this.rechercher(pays,nombre_lits,debutS,finS, etoiles);
 
             if(hotels.isEmpty()) {
                 System.err.println("Désolé, aucun hotel ne correspond à vos attentes.");
                 return;
             }
 
-            ArrayList<Hotel> liste_hotels = new ArrayList<>();
+            ArrayList<HotelWebService> liste_hotels = new ArrayList<>();
             int cpt = 1;
-            for (Map.Entry<Hotel, Double> current_proxy : hotels.entrySet()) {
-                Hotel hotel = current_proxy.getKey();
+            for (Map.Entry<HotelWebService, Double> current_proxy : hotels.entrySet()) {
+                HotelWebService hotel = current_proxy.getKey();
                 liste_hotels.add(hotel);
                 String etoiles_string = String.valueOf(etoiles);
-                System.out.println(hotel.getNom() + " " + etoiles_string + "\n" + hotel.getAdresse().toString());
+                System.out.println(hotel.getNom() + " " + etoiles_string + "\n");
                 for(int j = 1; j <= hotel.getChambres().size(); j++) {
                     Chambre chambre = hotel.getChambres().get(j-1);
                     System.out.println("N°" + cpt + "-" + j + " : " + chambre.toString());
@@ -115,73 +114,53 @@ public class Agence {
                     choix_chambre = intScanner.nextInt();
                 }
             }
-            LocalDate debut = LocalDate.parse(debutS) ;
-            LocalDate fin = LocalDate.parse(finS);
-            try {
-                makeReservation(agency, client, ind, outd, hotelList.get(choix_hotel -1).getRooms().get(choix_chambre -1), hotelList.get(choix_hotel -1), hotels.get(hotelList.get(choix_hotel -1)));
-            } catch (ReservationException e) {
-                e.printStackTrace();
-            }
+
+            reserverChambre(client,debutS,finS,liste_hotels.get(choix_hotel -1).getChambres().get(choix_chambre -1),liste_hotels.get(choix_hotel -1), hotels.get(liste_hotels.get(choix_hotel -1)));
+
         }
         catch(Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static HashMap<Hotel, Double> rechercher(String location, int size, String in, String out, int priceMin, int priceMax, double rating) {
-        HashMap<Hotel, Double> hotels = new HashMap<>();
-        HashMap<HotelService, Double> proxy = agency.getOffers();
+    public ArrayList<Chambre> rechercherChambre(HotelWebService proxy, String debutS, String finS, int nombre_lits) {
+        return (ArrayList<Chambre>) proxy.chambreDisponible(nombre_lits, debutS, finS);
+
+    }
+
+    public void reserverChambre(Client client, String debutS, String finS, Chambre chambre, HotelWebService hotel, double prix){
+        HotelWebService hotelW = (HotelWebService) hotel;
+        Scanner textScanner = new Scanner(System.in);
+        System.out.println("Numero de carte : ");
+        String numero = textScanner.nextLine();
+        System.out.println("Numero CVV : ");
+        String cvv = textScanner.nextLine();
+        System.out.println("Date d'expiration : ");
+        LocalDate expiration = LocalDate.parse(textScanner.nextLine());
+
+        Reservation reservation = new Reservation();
+        reservation.setClient(client);
+        reservation.setDateArrivee(debutS);
+        reservation.setDateDepart(finS);
+        reservation.setChambreReservee(chambre);
+
+        hotelW.addReservation(reservation);
+        System.out.println("Votre réservation est confirmé. Merci !\n");
+        //this.genererReservation(agence, hotel, client, reservation);
+    }
+    public HashMap<HotelWebService, Double> rechercher(String pays, int nombre_lits, String debutS, String finS, int etoiles) {
+        HashMap<HotelWebService, Double> hotels = new HashMap<>();
+        HashMap<HotelWebService, Double> liste_proxy = this.getListeHotels();
+        System.out.println(liste_proxy.size());
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con= DriverManager.getConnection(
-                    "jdbc:mysql://dakota.o2switch.net:3306/sc1samo7154_hotelfinderdb","sc1samo7154_hotelviewer","hotelfinderviewer");
-            Statement stmt=con.createStatement();
-            for (Map.Entry<HotelService, Double> prox : proxy.entrySet()) {
-                HotelService hotel = prox.getKey();
-                if((hotel.getHotel().getAddress().getCity().equals(location) || hotel.getHotel().getAddress().getCountry().equals(location))
-                        && hotel.getHotel().getStars() >= rating) {
-                    Hotel results = agency.searchRoom(hotel, in, out, size, priceMin, priceMax);
-                    ResultSet rs=stmt.executeQuery("select ID from Hotel where Name='"+results.getName()+"'");
-                    int id = 0;
-                    if(rs.next()) {
-                        id = rs.getInt("ID");
-                    }
-
-                    rs=stmt.executeQuery("select * from Reservation where Hotel="+ id);
-                    ArrayList<Integer> listID = new ArrayList<>();
-                    while(rs.next()) {
-                        listID.add(rs.getInt("Room"));
-                    }
-
-                    ArrayList<Integer> roomNums = new ArrayList<Integer>();
-                    for(int roomID : listID) {
-                        ResultSet rs2=stmt.executeQuery("select * from Room where ID="+ roomID);
-                        if(rs2.next()) {
-                            roomNums.add(rs2.getInt("Number"));
-                        }
-                        rs2.close();
-                    }
-
-                    ArrayList<Room> newRooms = new ArrayList<Room>();
-                    for(Room room : results.getRooms()) {
-                        boolean check = true;
-                        for(int roomNum : roomNums) {
-                            if(room.getRoomNumber() == roomNum) {
-                                check = false;
-                            }
-                        }
-                        if(check) {
-                            newRooms.add(room);
-                        }
-                    }
-
-                    if(!newRooms.isEmpty()) {
-                        for (Room room : newRooms) {
-                            room.setPrice(room.getPrice() - (room.getPrice() / 100 ) * agency.getOffers().get(hotel));
-                        }
-                        results.setRoom(newRooms);
-                        hotels.put(results, prox.getValue());
-                    }
+            for (Map.Entry<HotelWebService, Double> current_proxy : liste_proxy.entrySet()) {
+                HotelWebService hotel = current_proxy.getKey();
+                System.out.println(hotel.getHotel().getNom());
+                if(hotel.getAdresse().getPays().equals(pays) && hotel.getEtoiles() >= etoiles) {
+                    ArrayList<Chambre> resultats = this.rechercherChambre(hotel,debutS,finS, nombre_lits);
+                    //if(!resultats.isEmpty()){
+                    hotels.put(hotel,this.getListeHotels().get(hotel));
+                    //}
                 }
             }
         }

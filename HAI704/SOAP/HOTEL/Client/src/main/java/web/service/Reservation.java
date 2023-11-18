@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>Classe Java pour reservation complex type.
  * 
- * <p>Le fragment de schema suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="reservation">
@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="chambreReservee" type="{http://service.web/}chambre" minOccurs="0"/>
- *         &lt;element ref="{http://service.web/}client" minOccurs="0"/>
+ *         &lt;element name="client" type="{http://service.web/}client" minOccurs="0"/>
  *         &lt;element name="dateArrivee" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="dateDepart" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element ref="{http://service.web/}hotel" minOccurs="0"/>
@@ -41,7 +41,6 @@ import javax.xml.bind.annotation.XmlType;
 public class Reservation {
 
     protected Chambre chambreReservee;
-    @XmlElement(namespace = "http://service.web/")
     protected Client client;
     protected String dateArrivee;
     protected String dateDepart;
@@ -49,7 +48,7 @@ public class Reservation {
     protected Hotel hotel;
 
     /**
-     * Obtient la valeur de la propriete chambreReservee.
+     * Obtient la valeur de la propriété chambreReservee.
      * 
      * @return
      *     possible object is
@@ -61,7 +60,7 @@ public class Reservation {
     }
 
     /**
-     * Definit la valeur de la propriete chambreReservee.
+     * Définit la valeur de la propriété chambreReservee.
      * 
      * @param value
      *     allowed object is
@@ -73,7 +72,7 @@ public class Reservation {
     }
 
     /**
-     * Obtient la valeur de la propriete client.
+     * Obtient la valeur de la propriété client.
      * 
      * @return
      *     possible object is
@@ -85,7 +84,7 @@ public class Reservation {
     }
 
     /**
-     * Definit la valeur de la propriete client.
+     * Définit la valeur de la propriété client.
      * 
      * @param value
      *     allowed object is
@@ -97,7 +96,7 @@ public class Reservation {
     }
 
     /**
-     * Obtient la valeur de la propriete dateArrivee.
+     * Obtient la valeur de la propriété dateArrivee.
      * 
      * @return
      *     possible object is
@@ -109,7 +108,7 @@ public class Reservation {
     }
 
     /**
-     * Definit la valeur de la propriete dateArrivee.
+     * Définit la valeur de la propriété dateArrivee.
      * 
      * @param value
      *     allowed object is
@@ -121,7 +120,7 @@ public class Reservation {
     }
 
     /**
-     * Obtient la valeur de la propriete dateDepart.
+     * Obtient la valeur de la propriété dateDepart.
      * 
      * @return
      *     possible object is
@@ -133,7 +132,7 @@ public class Reservation {
     }
 
     /**
-     * Definit la valeur de la propriete dateDepart.
+     * Définit la valeur de la propriété dateDepart.
      * 
      * @param value
      *     allowed object is
@@ -145,7 +144,7 @@ public class Reservation {
     }
 
     /**
-     * Obtient la valeur de la propriete hotel.
+     * Obtient la valeur de la propriété hotel.
      * 
      * @return
      *     possible object is
@@ -157,7 +156,7 @@ public class Reservation {
     }
 
     /**
-     * Definit la valeur de la propriete hotel.
+     * Définit la valeur de la propriété hotel.
      * 
      * @param value
      *     allowed object is

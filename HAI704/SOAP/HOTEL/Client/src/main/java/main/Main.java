@@ -7,12 +7,17 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
+import web.service.Client;
 
 public class Main {
 
     public static void main(String[] args) {
 
         Agence agence1 = new Agence(1,"TripAdvisor","admin");
+
+        CarteCredit cb = new CarteCredit();
+
+        Client c1 = new Client();
 
         HotelWebService proxy_ibis = null;
         HotelWebService proxy_carleton = null;
@@ -31,12 +36,16 @@ public class Main {
             e.printStackTrace();
         }
 
+
+
         HashMap<HotelWebService, String> liste_hotels = new HashMap<HotelWebService, String>();
 
-        agence1.addListeHotels(proxy_ibis, "1.98");
-        agence1.addListeHotels(proxy_carleton, "1.1");
+        agence1.addListeHotels(proxy_ibis, 1.98);
+        agence1.addListeHotels(proxy_carleton, 1.1);
 
-        System.out.println("Choix :\n" +
+        agence1.hotelFinder(c1);
+
+       /* System.out.println("Choix :\n" +
                 "1. Ibis.com\n" +
                 "2. Carleton.com");
 
@@ -64,7 +73,7 @@ public class Main {
             System.out.println(current_proxy.chambreToString(i));
         }
 
-        ArrayList<Chambre> liste_chambres = (ArrayList<Chambre>) current_proxy.chambreDisponible(c1,"2023-06-01","2023-07-07",1);
+        ArrayList<Chambre> liste_chambres = (ArrayList<Chambre>) current_proxy.chambreDisponible(1,"2023-06-01","2023-07-07");
         for(Chambre c : liste_chambres){
             System.out.println("Numéro de chambre : "+c.getNumero());
         }
@@ -73,7 +82,7 @@ public class Main {
             System.out.println("Reservation confirmé");
         }else{
             System.out.println("Non réservé");
-        }
+        }*/
 
     }
 

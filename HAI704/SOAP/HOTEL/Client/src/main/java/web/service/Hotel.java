@@ -12,14 +12,13 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>Classe Java pour hotel complex type.
  * 
- * <p>Le fragment de schema suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="hotel">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://service.web/}adresse" minOccurs="0"/>
  *         &lt;element name="chambres" type="{http://service.web/}chambre" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="etoiles" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="nom" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -33,42 +32,16 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "hotel", propOrder = {
-    "adresse",
     "chambres",
     "etoiles",
     "nom"
 })
 public class Hotel {
 
-    @XmlElement(namespace = "http://service.web/")
-    protected Adresse adresse;
+    @XmlElement(nillable = true)
     protected List<Chambre> chambres;
     protected int etoiles;
     protected String nom;
-
-    /**
-     * Obtient la valeur de la propriete adresse.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Adresse }
-     *     
-     */
-    public Adresse getAdresse() {
-        return adresse;
-    }
-
-    /**
-     * Definit la valeur de la propriete adresse.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Adresse }
-     *     
-     */
-    public void setAdresse(Adresse value) {
-        this.adresse = value;
-    }
 
     /**
      * Gets the value of the chambres property.
@@ -100,7 +73,7 @@ public class Hotel {
     }
 
     /**
-     * Obtient la valeur de la propriete etoiles.
+     * Obtient la valeur de la propriété etoiles.
      * 
      */
     public int getEtoiles() {
@@ -108,7 +81,7 @@ public class Hotel {
     }
 
     /**
-     * Definit la valeur de la propriete etoiles.
+     * Définit la valeur de la propriété etoiles.
      * 
      */
     public void setEtoiles(int value) {
@@ -116,7 +89,7 @@ public class Hotel {
     }
 
     /**
-     * Obtient la valeur de la propriete nom.
+     * Obtient la valeur de la propriété nom.
      * 
      * @return
      *     possible object is
@@ -128,7 +101,7 @@ public class Hotel {
     }
 
     /**
-     * Definit la valeur de la propriete nom.
+     * Définit la valeur de la propriété nom.
      * 
      * @param value
      *     allowed object is
