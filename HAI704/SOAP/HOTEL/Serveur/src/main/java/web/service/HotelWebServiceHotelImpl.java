@@ -15,6 +15,11 @@ public class HotelWebServiceHotelImpl implements HotelWebService{
     }
 
     @Override
+    public Hotel getHotel() {
+        return this.hotel;
+    }
+
+    @Override
     public String chambreToString(int i) {
         return hotel.getChambres().get(i).toString();
     }
@@ -35,13 +40,18 @@ public class HotelWebServiceHotelImpl implements HotelWebService{
     }
 
     @Override
+    public void addReservation(Reservation reservation){
+        hotel.addReservation(reservation);
+    }
+
+    @Override
     public Adresse getAdresse(){
         return hotel.getAdresse();
     }
 
     @Override
-    public ArrayList<Chambre> chambreDisponible(Client client, String debutS, String finS, int nombre_lits) {
-        return hotel.chambreDisponible(client,debutS,finS,nombre_lits);
+    public ArrayList<Chambre> chambreDisponible(int nombre_lits, String debutS, String finS) {
+        return hotel.chambreDisponible(nombre_lits,debutS,finS);
     }
 
     @Override

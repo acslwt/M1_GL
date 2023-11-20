@@ -5,7 +5,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.time.LocalDate;
 import java.util.Date;
 
-@XmlRootElement
 public class Reservation {
 	private Client client;
     private Hotel hotel;

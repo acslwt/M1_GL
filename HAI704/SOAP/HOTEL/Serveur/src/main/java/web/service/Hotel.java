@@ -24,6 +24,9 @@ public class Hotel {
         this.etoiles = etoiles;
     }
 
+    public void addReservation(Reservation reservation){
+        reservation.getChambreReservee().addReservation(reservation);
+    }
     public ArrayList<Chambre> getChambres() {
         return chambres;
     }
@@ -47,6 +50,10 @@ public class Hotel {
         System.out.println("Chambre ajouter avec succes.");
     }
 
+    ArrayList<Reservation> getReservation(Chambre chambre){
+        return chambre.getDisponibilite();
+    }
+
     public int getEtoiles() {
         return etoiles;
     }
@@ -67,7 +74,7 @@ public class Hotel {
         return adresse;
     }
 
-    public ArrayList<Chambre> chambreDisponible(Client client, String debutS, String finS,int nombre_lits){
+    public ArrayList<Chambre> chambreDisponible(int nombre_lits, String debutS, String finS){
         LocalDate debut = LocalDate.parse(debutS);
         LocalDate fin = LocalDate.parse(finS);
         ArrayList<Chambre> liste_chambre= new ArrayList<Chambre>();
@@ -92,4 +99,5 @@ public class Hotel {
         }
 
     }
+
 }
