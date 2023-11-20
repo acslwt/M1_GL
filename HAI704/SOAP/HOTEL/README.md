@@ -40,6 +40,6 @@ Assurez-vous d'avoir démarré le serveur où les services web sont publiés ava
 + Utiliser une base de donné pour gérer les hotels et les réservations.
 ## Authors
 
-- [@acswlt](https://www.github.com/acslwt) alias Ayoub CHENINI
-- [@topun](https://www.github.com/topun) alias Thomas LAGUERRE
+- [@acswlt](https://www.github.com/acslwt) alias **Ayoub CHENINI**
+- [@t0pun](https://www.github.com/t0pun) alias **Thomas LAGUERRE**
 
