@@ -1,4 +1,4 @@
-package main;
+package interfaceweb.agencemodel;
 
 import web.service.*;
 
@@ -75,13 +75,13 @@ public class Main {
 
         ArrayList<Chambre> liste_chambres = (ArrayList<Chambre>) current_proxy.chambreDisponible(1,"2023-06-01","2023-07-07");
         for(Chambre c : liste_chambres){
-            System.out.println("Numéro de chambre : "+c.getNumero());
+            System.out.println("Numï¿½ro de chambre : "+c.getNumero());
         }
 
         if(current_proxy.reserver(2,c1,"2023-06-01","2023-07-07")==1){
-            System.out.println("Reservation confirmé");
+            System.out.println("Reservation confirmï¿½");
         }else{
-            System.out.println("Non réservé");
+            System.out.println("Non rï¿½servï¿½");
         }*/
 
     }

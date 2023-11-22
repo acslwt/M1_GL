@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>Classe Java pour chambre complex type.
  * 
- * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schÃ©ma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="chambre">
@@ -40,7 +40,7 @@ public class Chambre {
     protected double prix;
 
     /**
-     * Obtient la valeur de la propriété lits.
+     * Obtient la valeur de la propriÃ©tÃ© lits.
      * 
      */
     public int getLits() {
@@ -48,7 +48,7 @@ public class Chambre {
     }
 
     /**
-     * Définit la valeur de la propriété lits.
+     * DÃ©finit la valeur de la propriÃ©tÃ© lits.
      * 
      */
     public void setLits(int value) {
@@ -56,7 +56,7 @@ public class Chambre {
     }
 
     /**
-     * Obtient la valeur de la propriété numero.
+     * Obtient la valeur de la propriÃ©tÃ© numero.
      * 
      */
     public int getNumero() {
@@ -64,7 +64,7 @@ public class Chambre {
     }
 
     /**
-     * Définit la valeur de la propriété numero.
+     * DÃ©finit la valeur de la propriÃ©tÃ© numero.
      * 
      */
     public void setNumero(int value) {
@@ -72,7 +72,7 @@ public class Chambre {
     }
 
     /**
-     * Obtient la valeur de la propriété prix.
+     * Obtient la valeur de la propriÃ©tÃ© prix.
      * 
      */
     public double getPrix() {
@@ -80,7 +80,7 @@ public class Chambre {
     }
 
     /**
-     * Définit la valeur de la propriété prix.
+     * DÃ©finit la valeur de la propriÃ©tÃ© prix.
      * 
      */
     public void setPrix(double value) {

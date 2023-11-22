@@ -1,5 +1,6 @@
-package main;
+package interfaceweb.agencemodel;
 
+import org.springframework.stereotype.Component;
 import web.service.Chambre;
 import web.service.Hotel;
 import web.service.HotelWebService;
@@ -8,11 +9,9 @@ import web.service.Client;
 
 import java.sql.ResultSet;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
+@Component
 public class Agence {
 
     private final int id_agence;
@@ -40,6 +39,15 @@ public class Agence {
         return this.mot_de_passe;
     }
 
+    public HotelWebService getHotelByName(String nom_hotel){
+        for(HotelWebService hotel : liste_hotels.keySet()){
+            if(Objects.equals(hotel.getNom(), nom_hotel)){
+                return hotel;
+            }
+        }
+        return null;
+    }
+
     public void setNomAgence(String nom_agence) {
         this.nom_agence = nom_agence;
     }
@@ -60,22 +68,22 @@ public class Agence {
         try  {
             Scanner textScanner = new Scanner(System.in);
             Scanner intScanner = new Scanner(System.in);
-            System.out.println("Quel Pays?\n");
-            String pays = textScanner.nextLine();
-            System.out.println("Quelle est votre date d'arrivé ? (yyyy-MM-dd))\n");
+            System.out.println("Quel ville?\n");
+            String ville = textScanner.nextLine();
+            System.out.println("Quelle est votre date d'arrivï¿½ ? (yyyy-MM-dd))\n");
             String debutS = textScanner.nextLine();
             System.out.println("Quelle est votre date de retour ? (yyyy-MM-dd))\n");
             String finS = textScanner.nextLine();
             System.out.println("Combien de lis voulez vous ?\n");
             int nombre_lits = intScanner.nextInt();
-            System.out.println("Combien d'étoiles ?");
+            System.out.println("Combien d'ï¿½toiles ?");
             int etoiles = intScanner.nextInt();
             System.out.println("Nous recherchons les meilleurs offres pour vous...\n");
 
-            HashMap<HotelWebService, Double> hotels = this.rechercher(pays,nombre_lits,debutS,finS, etoiles);
+            HashMap<HotelWebService, Double> hotels = this.rechercher(ville,nombre_lits,debutS,finS, etoiles);
 
             if(hotels.isEmpty()) {
-                System.err.println("Désolé, aucun hotel ne correspond à vos attentes.");
+                System.err.println("Dï¿½solï¿½, aucun hotel ne correspond ï¿½ vos attentes.");
                 return;
             }
 
@@ -88,7 +96,7 @@ public class Agence {
                 System.out.println(hotel.getNom() + " " + etoiles_string + "\n");
                 for(int j = 1; j <= hotel.getChambres().size(); j++) {
                     Chambre chambre = hotel.getChambres().get(j-1);
-                    System.out.println("N°" + cpt + "-" + j + " : " + chambre.toString());
+                    System.out.println("Nï¿½" + cpt + "-" + j + " : " + chambre.toString());
                 }
                 System.out.println();
                 cpt++;
@@ -99,7 +107,7 @@ public class Agence {
             int choix_hotel = -1;
             int choix_chambre = 0;
             while(choix_hotel == -1) {
-                System.out.println("Numéro de l'hotel voulu (choisissez 0 pour quitter) : ");
+                System.out.println("Numï¿½ro de l'hotel voulu (choisissez 0 pour quitter) : ");
                 choix_hotel = intScanner.nextInt();
                 if(choix_hotel == 0) {
                     System.out.println("A bientot...");
@@ -145,10 +153,10 @@ public class Agence {
         reservation.setChambreReservee(chambre);
 
         hotelW.addReservation(reservation);
-        System.out.println("Votre réservation est confirmé. Merci !\n");
+        System.out.println("Votre rï¿½servation est confirmï¿½. Merci !\n");
         //this.genererReservation(agence, hotel, client, reservation);
     }
-    public HashMap<HotelWebService, Double> rechercher(String pays, int nombre_lits, String debutS, String finS, int etoiles) {
+    public HashMap<HotelWebService, Double> rechercher(String ville, int nombre_lits, String debutS, String finS, int etoiles) {
         HashMap<HotelWebService, Double> hotels = new HashMap<>();
         HashMap<HotelWebService, Double> liste_proxy = this.getListeHotels();
         System.out.println(liste_proxy.size());
@@ -156,7 +164,7 @@ public class Agence {
             for (Map.Entry<HotelWebService, Double> current_proxy : liste_proxy.entrySet()) {
                 HotelWebService hotel = current_proxy.getKey();
                 System.out.println(hotel.getHotel().getNom());
-                if(hotel.getAdresse().getPays().equals(pays) && hotel.getEtoiles() >= etoiles) {
+                if(hotel.getAdresse().getVille().equals(ville) && hotel.getEtoiles() >= etoiles) {
                     ArrayList<Chambre> resultats = this.rechercherChambre(hotel,debutS,finS, nombre_lits);
                     //if(!resultats.isEmpty()){
                     hotels.put(hotel,this.getListeHotels().get(hotel));

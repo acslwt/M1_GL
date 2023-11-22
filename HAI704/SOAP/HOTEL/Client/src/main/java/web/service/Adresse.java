@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>Classe Java pour adresse complex type.
  * 
- * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schÃ©ma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="adresse">
@@ -52,7 +52,7 @@ public class Adresse {
     protected String ville;
 
     /**
-     * Obtient la valeur de la propriété lattitude.
+     * Obtient la valeur de la propriÃ©tÃ© lattitude.
      * 
      */
     public int getLattitude() {
@@ -60,7 +60,7 @@ public class Adresse {
     }
 
     /**
-     * Définit la valeur de la propriété lattitude.
+     * DÃ©finit la valeur de la propriÃ©tÃ© lattitude.
      * 
      */
     public void setLattitude(int value) {
@@ -68,7 +68,7 @@ public class Adresse {
     }
 
     /**
-     * Obtient la valeur de la propriété lieuDit.
+     * Obtient la valeur de la propriÃ©tÃ© lieuDit.
      * 
      * @return
      *     possible object is
@@ -80,7 +80,7 @@ public class Adresse {
     }
 
     /**
-     * Définit la valeur de la propriété lieuDit.
+     * DÃ©finit la valeur de la propriÃ©tÃ© lieuDit.
      * 
      * @param value
      *     allowed object is
@@ -92,7 +92,7 @@ public class Adresse {
     }
 
     /**
-     * Obtient la valeur de la propriété longitude.
+     * Obtient la valeur de la propriÃ©tÃ© longitude.
      * 
      */
     public int getLongitude() {
@@ -100,7 +100,7 @@ public class Adresse {
     }
 
     /**
-     * Définit la valeur de la propriété longitude.
+     * DÃ©finit la valeur de la propriÃ©tÃ© longitude.
      * 
      */
     public void setLongitude(int value) {
@@ -108,7 +108,7 @@ public class Adresse {
     }
 
     /**
-     * Obtient la valeur de la propriété numero.
+     * Obtient la valeur de la propriÃ©tÃ© numero.
      * 
      */
     public int getNumero() {
@@ -116,7 +116,7 @@ public class Adresse {
     }
 
     /**
-     * Définit la valeur de la propriété numero.
+     * DÃ©finit la valeur de la propriÃ©tÃ© numero.
      * 
      */
     public void setNumero(int value) {
@@ -124,7 +124,7 @@ public class Adresse {
     }
 
     /**
-     * Obtient la valeur de la propriété pays.
+     * Obtient la valeur de la propriÃ©tÃ© pays.
      * 
      * @return
      *     possible object is
@@ -136,7 +136,7 @@ public class Adresse {
     }
 
     /**
-     * Définit la valeur de la propriété pays.
+     * DÃ©finit la valeur de la propriÃ©tÃ© pays.
      * 
      * @param value
      *     allowed object is
@@ -148,7 +148,7 @@ public class Adresse {
     }
 
     /**
-     * Obtient la valeur de la propriété rue.
+     * Obtient la valeur de la propriÃ©tÃ© rue.
      * 
      * @return
      *     possible object is
@@ -160,7 +160,7 @@ public class Adresse {
     }
 
     /**
-     * Définit la valeur de la propriété rue.
+     * DÃ©finit la valeur de la propriÃ©tÃ© rue.
      * 
      * @param value
      *     allowed object is
@@ -172,7 +172,7 @@ public class Adresse {
     }
 
     /**
-     * Obtient la valeur de la propriété ville.
+     * Obtient la valeur de la propriÃ©tÃ© ville.
      * 
      * @return
      *     possible object is
@@ -184,7 +184,7 @@ public class Adresse {
     }
 
     /**
-     * Définit la valeur de la propriété ville.
+     * DÃ©finit la valeur de la propriÃ©tÃ© ville.
      * 
      * @param value
      *     allowed object is
