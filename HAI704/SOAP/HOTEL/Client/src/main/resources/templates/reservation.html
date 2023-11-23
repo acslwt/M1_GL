@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Réservation</title>
+    <link rel="stylesheet" type="text/css" href="/reservation.css">
+</head>
+<body>
+<div class="container">
+    <h1>Réservation</h1>
+    <form action="/confirmation" method="GET">
+        <div class="form-group">
+            <label for="prenom">Prénom :</label>
+            <input type="text" id="prenom" name="prenom" required>
+        </div>
+        <div class="form-group">
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" required>
+        </div>
+        <div class="form-group">
+            <label for="debut">Date de début :</label>
+            <input type="date" id="debut" name="debut" th:value="${debut}" required>
+        </div>
+        <div class="form-group">
+            <label for="fin">Date de fin :</label>
+            <input type="date" id="fin" name="fin" required>
+        </div>
+        <div class="form-group">
+            <label for="numero_carte">Numéro de carte de crédit :</label>
+            <input type="text" id="numero_carte" name="numero_carte" required>
+        </div>
+        <div class="form-group">
+            <label for="date_exp">Date d'expiration :</label>
+            <input type="text" id="date_exp" name="date_exp" placeholder="MM/AA" required>
+        </div>
+        <div class="form-group">
+            <label for="cvv">Code de sécurité (CVV) :</label>
+            <input type="text" id="cvv" name="cvv" required>
+        </div>
+        <button type="submit">Réserver</button>
+    </form>
+</div>
+</body>
+</html>

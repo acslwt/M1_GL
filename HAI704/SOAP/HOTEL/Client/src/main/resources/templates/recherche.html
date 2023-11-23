@@ -7,14 +7,14 @@
 <body>
 <div class="header">
     <div class="search-bar">
-        <form action="/research" method="GET">
-            <input type="number" name="stars" min="1" max="5" placeholder="Nombre d'étoiles">
+        <form action="/recherche" method="GET">
+            <input type="number" name="etoiles" min="1" max="5" placeholder="Nombre d'étoiles">
             <select name="ville">
                 <option th:each="ville, iterStat : ${agence.listeHotels}" th:value="${ville.getKey().getAdresse().ville}" th:text="${ville.getKey().getAdresse().ville}"></option>
             </select>
-            <input type="number" name="beds" min="1" placeholder="Nombre de lits">
-            <input type="date" name="arrival" placeholder="Arrivée">
-            <input type="date" name="departure" placeholder="Retour">
+            <input type="number" name="nombrelits" min="1" placeholder="Nombre de lits">
+            <input type="date" name="debut" placeholder="Arrivée">
+            <input type="date" name="fin" placeholder="Retour">
             <button type="submit">Rechercher</button>
         </form>
     </div>

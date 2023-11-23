@@ -21,6 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="chambres" type="{http://service.web/}chambre" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="etoiles" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="listePhotos" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="nom" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -34,6 +35,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "hotel", propOrder = {
     "chambres",
     "etoiles",
+    "listePhotos",
     "nom"
 })
 public class Hotel {
@@ -41,6 +43,8 @@ public class Hotel {
     @XmlElement(nillable = true)
     protected List<Chambre> chambres;
     protected int etoiles;
+    @XmlElement(nillable = true)
+    protected List<String> listePhotos;
     protected String nom;
 
     /**
@@ -86,6 +90,35 @@ public class Hotel {
      */
     public void setEtoiles(int value) {
         this.etoiles = value;
+    }
+
+    /**
+     * Gets the value of the listePhotos property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the listePhotos property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getListePhotos().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link String }
+     * 
+     * 
+     */
+    public List<String> getListePhotos() {
+        if (listePhotos == null) {
+            listePhotos = new ArrayList<String>();
+        }
+        return this.listePhotos;
     }
 
     /**

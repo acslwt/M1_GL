@@ -39,6 +39,18 @@ public interface HotelWebService {
 
     /**
      * 
+     * @return
+     *     returns web.service.Adresse
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getAdresse", targetNamespace = "http://service.web/", className = "web.service.GetAdresse")
+    @ResponseWrapper(localName = "getAdresseResponse", targetNamespace = "http://service.web/", className = "web.service.GetAdresseResponse")
+    @Action(input = "http://service.web/HotelWebService/getAdresseRequest", output = "http://service.web/HotelWebService/getAdresseResponse")
+    public Adresse getAdresse();
+
+    /**
+     * 
      * @param arg2
      * @param arg1
      * @param arg0
@@ -57,18 +69,6 @@ public interface HotelWebService {
         String arg1,
         @WebParam(name = "arg2", targetNamespace = "")
         String arg2);
-
-    /**
-     * 
-     * @return
-     *     returns java.util.List<web.service.Chambre>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getChambres", targetNamespace = "http://service.web/", className = "web.service.GetChambres")
-    @ResponseWrapper(localName = "getChambresResponse", targetNamespace = "http://service.web/", className = "web.service.GetChambresResponse")
-    @Action(input = "http://service.web/HotelWebService/getChambresRequest", output = "http://service.web/HotelWebService/getChambresResponse")
-    public List<Chambre> getChambres();
 
     /**
      * 
@@ -109,6 +109,18 @@ public interface HotelWebService {
     /**
      * 
      * @return
+     *     returns java.util.List<web.service.Chambre>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getChambres", targetNamespace = "http://service.web/", className = "web.service.GetChambres")
+    @ResponseWrapper(localName = "getChambresResponse", targetNamespace = "http://service.web/", className = "web.service.GetChambresResponse")
+    @Action(input = "http://service.web/HotelWebService/getChambresRequest", output = "http://service.web/HotelWebService/getChambresResponse")
+    public List<Chambre> getChambres();
+
+    /**
+     * 
+     * @return
      *     returns int
      */
     @WebMethod
@@ -121,14 +133,14 @@ public interface HotelWebService {
     /**
      * 
      * @return
-     *     returns web.service.Adresse
+     *     returns web.service.Hotel
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getAdresse", targetNamespace = "http://service.web/", className = "web.service.GetAdresse")
-    @ResponseWrapper(localName = "getAdresseResponse", targetNamespace = "http://service.web/", className = "web.service.GetAdresseResponse")
-    @Action(input = "http://service.web/HotelWebService/getAdresseRequest", output = "http://service.web/HotelWebService/getAdresseResponse")
-    public Adresse getAdresse();
+    @RequestWrapper(localName = "getHotel", targetNamespace = "http://service.web/", className = "web.service.GetHotel")
+    @ResponseWrapper(localName = "getHotelResponse", targetNamespace = "http://service.web/", className = "web.service.GetHotelResponse")
+    @Action(input = "http://service.web/HotelWebService/getHotelRequest", output = "http://service.web/HotelWebService/getHotelResponse")
+    public Hotel getHotel();
 
     /**
      * 
@@ -144,17 +156,5 @@ public interface HotelWebService {
     public String chambreToString(
         @WebParam(name = "arg0", targetNamespace = "")
         int arg0);
-
-    /**
-     * 
-     * @return
-     *     returns web.service.Hotel
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getHotel", targetNamespace = "http://service.web/", className = "web.service.GetHotel")
-    @ResponseWrapper(localName = "getHotelResponse", targetNamespace = "http://service.web/", className = "web.service.GetHotelResponse")
-    @Action(input = "http://service.web/HotelWebService/getHotelRequest", output = "http://service.web/HotelWebService/getHotelResponse")
-    public Hotel getHotel();
 
 }

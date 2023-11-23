@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>Classe Java pour carteCredit complex type.
  * 
- * <p>Le fragment de schÃ©ma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="carteCredit">
@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="cvc" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="dateExp" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="nom" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="numero" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="numero" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="prenom" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -42,11 +42,11 @@ public class CarteCredit {
     protected int cvc;
     protected String dateExp;
     protected String nom;
-    protected int numero;
+    protected String numero;
     protected String prenom;
 
     /**
-     * Obtient la valeur de la propriÃ©tÃ© cvc.
+     * Obtient la valeur de la propriété cvc.
      * 
      */
     public int getCvc() {
@@ -54,7 +54,7 @@ public class CarteCredit {
     }
 
     /**
-     * DÃ©finit la valeur de la propriÃ©tÃ© cvc.
+     * Définit la valeur de la propriété cvc.
      * 
      */
     public void setCvc(int value) {
@@ -62,7 +62,7 @@ public class CarteCredit {
     }
 
     /**
-     * Obtient la valeur de la propriÃ©tÃ© dateExp.
+     * Obtient la valeur de la propriété dateExp.
      * 
      * @return
      *     possible object is
@@ -74,7 +74,7 @@ public class CarteCredit {
     }
 
     /**
-     * DÃ©finit la valeur de la propriÃ©tÃ© dateExp.
+     * Définit la valeur de la propriété dateExp.
      * 
      * @param value
      *     allowed object is
@@ -86,7 +86,7 @@ public class CarteCredit {
     }
 
     /**
-     * Obtient la valeur de la propriÃ©tÃ© nom.
+     * Obtient la valeur de la propriété nom.
      * 
      * @return
      *     possible object is
@@ -98,7 +98,7 @@ public class CarteCredit {
     }
 
     /**
-     * DÃ©finit la valeur de la propriÃ©tÃ© nom.
+     * Définit la valeur de la propriété nom.
      * 
      * @param value
      *     allowed object is
@@ -110,23 +110,31 @@ public class CarteCredit {
     }
 
     /**
-     * Obtient la valeur de la propriÃ©tÃ© numero.
+     * Obtient la valeur de la propriété numero.
      * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
     /**
-     * DÃ©finit la valeur de la propriÃ©tÃ© numero.
+     * Définit la valeur de la propriété numero.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
-    public void setNumero(int value) {
+    public void setNumero(String value) {
         this.numero = value;
     }
 
     /**
-     * Obtient la valeur de la propriÃ©tÃ© prenom.
+     * Obtient la valeur de la propriété prenom.
      * 
      * @return
      *     possible object is
@@ -138,7 +146,7 @@ public class CarteCredit {
     }
 
     /**
-     * DÃ©finit la valeur de la propriÃ©tÃ© prenom.
+     * Définit la valeur de la propriété prenom.
      * 
      * @param value
      *     allowed object is

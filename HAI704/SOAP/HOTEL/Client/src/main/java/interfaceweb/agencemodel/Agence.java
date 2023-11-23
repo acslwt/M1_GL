@@ -164,11 +164,8 @@ public class Agence {
             for (Map.Entry<HotelWebService, Double> current_proxy : liste_proxy.entrySet()) {
                 HotelWebService hotel = current_proxy.getKey();
                 System.out.println(hotel.getHotel().getNom());
-                if(hotel.getAdresse().getVille().equals(ville) && hotel.getEtoiles() >= etoiles) {
-                    ArrayList<Chambre> resultats = this.rechercherChambre(hotel,debutS,finS, nombre_lits);
-                    //if(!resultats.isEmpty()){
+                if(hotel.getAdresse().getVille().equals(ville) && hotel.getEtoiles() >= etoiles && !this.rechercherChambre(hotel,debutS,finS, nombre_lits).isEmpty()) {
                     hotels.put(hotel,this.getListeHotels().get(hotel));
-                    //}
                 }
             }
         }

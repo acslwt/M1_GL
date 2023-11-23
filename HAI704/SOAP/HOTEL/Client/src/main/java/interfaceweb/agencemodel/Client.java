@@ -1,10 +1,12 @@
 package interfaceweb.agencemodel;
 
+import org.springframework.stereotype.Component;
 import web.service.CarteCredit;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+@Component
 public class Client {
 
     private String nom;

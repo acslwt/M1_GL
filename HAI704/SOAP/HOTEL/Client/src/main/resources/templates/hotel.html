@@ -73,7 +73,7 @@
             <p th:text="${chambre.getLits()} + ' personnes'" class="inline"></p><br>
             <div class="inline">
                 <p th:text="'Prix : ' + ${chambre.getPrix()} + ' €'"></p>
-                <button class="reserve-button">Réserver</button>
+                <form action="/reservation" method="GET"><button name="numeroChambre" type="submit" class="reserve-button" th:value="${chambre.numero}">Réserver</button></form>
             </div>
         </li>
     </ul>

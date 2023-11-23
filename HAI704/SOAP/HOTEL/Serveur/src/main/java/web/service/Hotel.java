@@ -7,11 +7,13 @@ import java.util.ArrayList;
 
 @XmlRootElement
 public class Hotel {
-	
+
+
 	private String nom;
     private Adresse adresse;
     private int etoiles;
     private ArrayList<Chambre> chambres = new ArrayList<>();
+    private ArrayList<String> liste_photos = new ArrayList<>();
 
     public Hotel(){
         this.nom = "Hotel";
@@ -77,7 +79,7 @@ public class Hotel {
     public ArrayList<Chambre> chambreDisponible(int nombre_lits, String debutS, String finS){
         LocalDate debut = LocalDate.parse(debutS);
         LocalDate fin = LocalDate.parse(finS);
-        ArrayList<Chambre> liste_chambre= new ArrayList<Chambre>();
+        ArrayList<Chambre> liste_chambre= new ArrayList<>();
         for(Chambre current_chambre : chambres){
             if(current_chambre.estDisponible(debutS, finS) && current_chambre.getLits()==nombre_lits){
                 liste_chambre.add(current_chambre);
@@ -100,4 +102,17 @@ public class Hotel {
 
     }
 
+    public ArrayList<String> getListePhotos() {
+        return liste_photos;
+    }
+
+    public void setListePhotos(ArrayList<String> liste_photos) {
+        this.liste_photos = liste_photos;
+    }
+
+    public void addPhoto(String url_photo){
+        if(!this.liste_photos.contains(url_photo)){
+            this.liste_photos.add(url_photo);
+        }
+    }
 }

@@ -13,15 +13,19 @@ import web.service.HotelWebService;
 public class HotelController {
 
     private Agence agence;
-
+    private Hotel hotel;
     @Autowired
     public HotelController(Agence agence){
         this.agence = agence;
+        this.hotel = hotel;
     }
     @GetMapping("/hotel")
     public String showHotelDetails(@RequestParam("nom") String nom, Model model) {
+        String debut = (String) model.getAttribute("debut");
+        this.hotel = agence.getHotelByName(nom).getHotel();
         model.addAttribute("agence",agence);
         model.addAttribute("nom",nom);
+        model.addAttribute("debut",debut);
         return "hotel";
     }
 }

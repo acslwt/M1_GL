@@ -6,18 +6,18 @@ public class CarteCredit {
 	
 	private String nom;
 	private String prenom;
-	private int numero;
+	private String numero;
 	private String dateExp;
 	private int cvc;
 
 	public CarteCredit(){
 		this.nom = "nom";
 		this.prenom = "prenom";
-		this.numero = 6666;
+		this.numero = "98574697125089364819";
 		this.dateExp = "1999-01-01";
 		this.cvc = 666;
 	}
-	public CarteCredit(String nom, String prenom, int numero, String date, int cvc) {
+	public CarteCredit(String nom, String prenom, String numero, String date, int cvc) {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.numero = numero;
@@ -37,11 +37,13 @@ public class CarteCredit {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-	public int getNumero() {
+	public String getNumero() {
 		return numero;
 	}
-	public void setNumero(int numero) {
-		this.numero = numero;
+	public void setNumero(String numero) {
+		if(numero.length()==16){
+			this.numero = numero;
+		}
 	}
 
 	public String getDateExp() {
