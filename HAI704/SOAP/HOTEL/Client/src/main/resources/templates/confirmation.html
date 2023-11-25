@@ -37,10 +37,10 @@
         <h2>Merci pour votre réservation !</h2>
         <p>Votre réservation a été confirmée avec succès.</p>
         <h3>Détails de la réservation :</h3>
-        <p th:text="${nom}"><strong>Nom :</strong></p>
-        <p th:text="${debut}"><strong>Date de début :</strong></p>
-        <p th:text="${fin}"><strong>Date de fin :</strong></p>
-        <p th:text="${numeroConfirmation}"><strong>Numéro de confirmation :</strong></p>
+        <p th:utext="'<strong>Nom : </strong>'+${nom}+' '+${prenom}"><strong>Client :</strong></p>
+        <p th:utext="'<strong>Date de début : </strong>'+${debut}"><strong>Date de début :</strong></p>
+        <p th:utext="'<strong>Date de fin :</strong>'+${fin}"><strong>Date de fin :</strong></p>
+        <p th:utext="'<strong>Numéro de confirmation :</strong>' + ${numeroConfirmation}"></p>
     </div>
 </div>
 </body>

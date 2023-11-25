@@ -6,7 +6,10 @@ import web.service.Hotel;
 import web.service.HotelWebService;
 import web.service.Reservation;
 import web.service.Client;
-
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.util.Properties;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.*;
@@ -137,14 +140,6 @@ public class Agence {
     }
 
     public void reserverChambre(Client client, String debutS, String finS, Chambre chambre, HotelWebService hotel, double prix){
-        HotelWebService hotelW = (HotelWebService) hotel;
-        Scanner textScanner = new Scanner(System.in);
-        System.out.println("Numero de carte : ");
-        String numero = textScanner.nextLine();
-        System.out.println("Numero CVV : ");
-        String cvv = textScanner.nextLine();
-        System.out.println("Date d'expiration : ");
-        LocalDate expiration = LocalDate.parse(textScanner.nextLine());
 
         Reservation reservation = new Reservation();
         reservation.setClient(client);
@@ -152,7 +147,7 @@ public class Agence {
         reservation.setDateDepart(finS);
         reservation.setChambreReservee(chambre);
 
-        hotelW.addReservation(reservation);
+        hotel.addReservation(reservation);
         System.out.println("Votre r�servation est confirm�. Merci !\n");
         //this.genererReservation(agence, hotel, client, reservation);
     }
@@ -175,5 +170,63 @@ public class Agence {
         return hotels;
     }
 
+    public static void sendMail(String nom_agence,String nom, String prenom, String numero_reservation,String debut,String fin,double prix,String email) {
+        // Paramètres de configuration du serveur SMTP et des informations d'authentification
+        String host = "smtp.gmail.com";
+        int port = 587;
+        String username = "ayoub.chenini1@gmail.com";
+        String password = "afxfonhtbjcxqxaz";
+
+        // Propriétés pour la configuration de la session
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.port", port);
+
+        // Création de la session avec les informations d'authentification
+        Session session = Session.getInstance(props, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
+
+        try {
+            // Création du message e-mail
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("sender@example.com"));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
+            message.setSubject("Bienvenue à "+nom_agence+" ! Confirmation de votre réservation");
+            message.setContent("Cher(e) [Nom du client],<br>" +
+                    "<br>" +
+                    "Nous vous remercions d'avoir choisi notre établissement pour votre séjour. Nous sommes ravis de confirmer votre réservation de chambre. Voici les détails de votre réservation :<br>" +
+                    "<br>" +
+                    "<strong>Client : </strong>"+nom+" "+prenom+"<br>" +
+                    "<strong>Numéro de réservation : </strong>"+numero_reservation+"]<br>" +
+                    "<strong>Date d'arrivée : </strong>"+debut+"<br>" +
+                    "<strong>Date de départ : </strong>"+fin+"<br>" +
+                    "<strong>Tarif : </strong>"+prix+" €<br><br>" +
+                    "Nous tenons à vous assurer que nous ferons tout notre possible pour rendre votre séjour agréable et confortable. Si vous avez des demandes spéciales ou des besoins particuliers, n'hésitez pas à nous en informer à l'avance afin que nous puissions les prendre en compte.<br>" +
+                    "<br>" +
+                    "Pour toute question supplémentaire ou demande d'assistance, notre équipe est à votre disposition. Nous vous encourageons également à consulter notre site web pour découvrir les services et installations disponibles dans notre établissement.<br>" +
+                    "<br>" +
+                    "Nous sommes impatients de vous accueillir bientôt. Si vous avez besoin d'apporter des modifications à votre réservation ou d'annuler, veuillez nous en informer dès que possible.<br>" +
+                    "<br>" +
+                    "Encore une fois, merci de nous avoir choisis. Nous espérons que votre séjour sera des plus agréables.<br>" +
+                    "<br>" +
+                    "Cordialement,<br>" +
+                    "<br>" +
+                    "<h3>CHENINI Ayoub le plus beau de tous les rebeux</h3><br>"
+                    +nom_agence+"<br>","text/html; charset=utf-8");
+
+            // Envoi du message
+            Transport.send(message);
+
+            System.out.println("L'e-mail a été envoyé avec succès.");
+        } catch (MessagingException e) {
+            System.out.println("Une erreur s'est produite lors de l'envoi de l'e-mail : " + e.getMessage());
+        }
+    }
 
 }

@@ -33,8 +33,13 @@ public class Hotel {
         return chambres;
     }
 
-    public Chambre getChambre(int i){
-        return this.chambres.get(i);
+    public Chambre getChambreByNumero(int i){
+        for(Chambre chambre : chambres){
+            if(chambre.getNumero()==i){
+                return chambre;
+            }
+        }
+        return null;
     }
 
     public void setChambres(ArrayList<Chambre> chambres) {
@@ -89,7 +94,7 @@ public class Hotel {
     }
 
     public int reserver(int numero_Chambre, Client client, String debutS, String finS){
-        Chambre chambre = this.getChambre(numero_Chambre);
+        Chambre chambre = this.getChambreByNumero(numero_Chambre);
         if(chambre.estDisponible(debutS,finS)) {
             Reservation reservation_client = new Reservation(client, this, debutS, finS, chambre);
             chambre.addReservation(reservation_client);

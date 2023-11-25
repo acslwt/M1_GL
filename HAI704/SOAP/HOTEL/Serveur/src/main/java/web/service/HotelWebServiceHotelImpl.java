@@ -30,6 +30,11 @@ public class HotelWebServiceHotelImpl implements HotelWebService{
     }
 
     @Override
+    public Chambre getChambreByNumero(int i) {
+        return this.hotel.getChambreByNumero(i);
+    }
+
+    @Override
     public int getEtoiles(){
         return hotel.getEtoiles();
     }

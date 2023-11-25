@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
-@ComponentScan({"interfaceweb.agencemodel", "interfaceweb.controller"})
+@ComponentScan({"interfaceweb.agencemodel", "interfaceweb.controller","web.service"})
 @SpringBootApplication
 public class Application {
     public static void main(String[] args) {

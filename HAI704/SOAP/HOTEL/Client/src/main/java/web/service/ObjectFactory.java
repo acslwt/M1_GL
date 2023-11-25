@@ -36,6 +36,7 @@ public class ObjectFactory {
     private final static QName _GetNom_QNAME = new QName("http://service.web/", "getNom");
     private final static QName _ChambreToStringResponse_QNAME = new QName("http://service.web/", "chambreToStringResponse");
     private final static QName _GetAdresse_QNAME = new QName("http://service.web/", "getAdresse");
+    private final static QName _GetChambreByNumero_QNAME = new QName("http://service.web/", "getChambreByNumero");
     private final static QName _GetHotelResponse_QNAME = new QName("http://service.web/", "getHotelResponse");
     private final static QName _AddReservation_QNAME = new QName("http://service.web/", "addReservation");
     private final static QName _GetNomResponse_QNAME = new QName("http://service.web/", "getNomResponse");
@@ -43,6 +44,7 @@ public class ObjectFactory {
     private final static QName _GetHotel_QNAME = new QName("http://service.web/", "getHotel");
     private final static QName _ReserverResponse_QNAME = new QName("http://service.web/", "reserverResponse");
     private final static QName _Reserver_QNAME = new QName("http://service.web/", "reserver");
+    private final static QName _GetChambreByNumeroResponse_QNAME = new QName("http://service.web/", "getChambreByNumeroResponse");
     private final static QName _Chambre_QNAME = new QName("http://service.web/", "chambre");
     private final static QName _GetChambres_QNAME = new QName("http://service.web/", "getChambres");
 
@@ -51,6 +53,14 @@ public class ObjectFactory {
      * 
      */
     public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link GetChambreByNumeroResponse }
+     * 
+     */
+    public GetChambreByNumeroResponse createGetChambreByNumeroResponse() {
+        return new GetChambreByNumeroResponse();
     }
 
     /**
@@ -182,6 +192,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetChambreByNumero }
+     * 
+     */
+    public GetChambreByNumero createGetChambreByNumero() {
+        return new GetChambreByNumero();
+    }
+
+    /**
      * Create an instance of {@link ChambreToString }
      * 
      */
@@ -222,14 +240,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link CarteCredit }
-     * 
-     */
-    public CarteCredit createCarteCredit() {
-        return new CarteCredit();
-    }
-
-    /**
      * Create an instance of {@link Reservation }
      * 
      */
@@ -243,6 +253,14 @@ public class ObjectFactory {
      */
     public Client createClient() {
         return new Client();
+    }
+
+    /**
+     * Create an instance of {@link CarteCredit }
+     * 
+     */
+    public CarteCredit createCarteCredit() {
+        return new CarteCredit();
     }
 
     /**
@@ -354,6 +372,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetChambreByNumero }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.web/", name = "getChambreByNumero")
+    public JAXBElement<GetChambreByNumero> createGetChambreByNumero(GetChambreByNumero value) {
+        return new JAXBElement<GetChambreByNumero>(_GetChambreByNumero_QNAME, GetChambreByNumero.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetHotelResponse }{@code >}}
      * 
      */
@@ -414,6 +441,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.web/", name = "reserver")
     public JAXBElement<Reserver> createReserver(Reserver value) {
         return new JAXBElement<Reserver>(_Reserver_QNAME, Reserver.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetChambreByNumeroResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.web/", name = "getChambreByNumeroResponse")
+    public JAXBElement<GetChambreByNumeroResponse> createGetChambreByNumeroResponse(GetChambreByNumeroResponse value) {
+        return new JAXBElement<GetChambreByNumeroResponse>(_GetChambreByNumeroResponse_QNAME, GetChambreByNumeroResponse.class, null, value);
     }
 
     /**

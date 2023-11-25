@@ -1,6 +1,7 @@
 
 package web.service;
 
+
 import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -22,8 +23,36 @@ import javax.xml.ws.ResponseWrapper;
 @XmlSeeAlso({
     ObjectFactory.class
 })
+
 public interface HotelWebService {
 
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns web.service.Chambre
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getChambreByNumero", targetNamespace = "http://service.web/", className = "web.service.GetChambreByNumero")
+    @ResponseWrapper(localName = "getChambreByNumeroResponse", targetNamespace = "http://service.web/", className = "web.service.GetChambreByNumeroResponse")
+    @Action(input = "http://service.web/HotelWebService/getChambreByNumeroRequest", output = "http://service.web/HotelWebService/getChambreByNumeroResponse")
+    public Chambre getChambreByNumero(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0);
+
+    /**
+     * 
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getEtoiles", targetNamespace = "http://service.web/", className = "web.service.GetEtoiles")
+    @ResponseWrapper(localName = "getEtoilesResponse", targetNamespace = "http://service.web/", className = "web.service.GetEtoilesResponse")
+    @Action(input = "http://service.web/HotelWebService/getEtoilesRequest", output = "http://service.web/HotelWebService/getEtoilesResponse")
+    public int getEtoiles();
 
     /**
      * 
@@ -36,6 +65,18 @@ public interface HotelWebService {
     @ResponseWrapper(localName = "getNomResponse", targetNamespace = "http://service.web/", className = "web.service.GetNomResponse")
     @Action(input = "http://service.web/HotelWebService/getNomRequest", output = "http://service.web/HotelWebService/getNomResponse")
     public String getNom();
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<web.service.Chambre>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getChambres", targetNamespace = "http://service.web/", className = "web.service.GetChambres")
+    @ResponseWrapper(localName = "getChambresResponse", targetNamespace = "http://service.web/", className = "web.service.GetChambresResponse")
+    @Action(input = "http://service.web/HotelWebService/getChambresRequest", output = "http://service.web/HotelWebService/getChambresResponse")
+    public List<Chambre> getChambres();
 
     /**
      * 
@@ -72,6 +113,18 @@ public interface HotelWebService {
 
     /**
      * 
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "addReservation", targetNamespace = "http://service.web/", className = "web.service.AddReservation")
+    @ResponseWrapper(localName = "addReservationResponse", targetNamespace = "http://service.web/", className = "web.service.AddReservationResponse")
+    @Action(input = "http://service.web/HotelWebService/addReservationRequest", output = "http://service.web/HotelWebService/addReservationResponse")
+    public void addReservation(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Reservation arg0);
+
+    /**
+     * 
      * @param arg3
      * @param arg2
      * @param arg1
@@ -93,42 +146,6 @@ public interface HotelWebService {
         String arg2,
         @WebParam(name = "arg3", targetNamespace = "")
         String arg3);
-
-    /**
-     * 
-     * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "addReservation", targetNamespace = "http://service.web/", className = "web.service.AddReservation")
-    @ResponseWrapper(localName = "addReservationResponse", targetNamespace = "http://service.web/", className = "web.service.AddReservationResponse")
-    @Action(input = "http://service.web/HotelWebService/addReservationRequest", output = "http://service.web/HotelWebService/addReservationResponse")
-    public void addReservation(
-        @WebParam(name = "arg0", targetNamespace = "")
-        Reservation arg0);
-
-    /**
-     * 
-     * @return
-     *     returns java.util.List<web.service.Chambre>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getChambres", targetNamespace = "http://service.web/", className = "web.service.GetChambres")
-    @ResponseWrapper(localName = "getChambresResponse", targetNamespace = "http://service.web/", className = "web.service.GetChambresResponse")
-    @Action(input = "http://service.web/HotelWebService/getChambresRequest", output = "http://service.web/HotelWebService/getChambresResponse")
-    public List<Chambre> getChambres();
-
-    /**
-     * 
-     * @return
-     *     returns int
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getEtoiles", targetNamespace = "http://service.web/", className = "web.service.GetEtoiles")
-    @ResponseWrapper(localName = "getEtoilesResponse", targetNamespace = "http://service.web/", className = "web.service.GetEtoilesResponse")
-    @Action(input = "http://service.web/HotelWebService/getEtoilesRequest", output = "http://service.web/HotelWebService/getEtoilesResponse")
-    public int getEtoiles();
 
     /**
      * 

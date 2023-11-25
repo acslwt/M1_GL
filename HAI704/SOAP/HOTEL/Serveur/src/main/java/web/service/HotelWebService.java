@@ -14,6 +14,8 @@ public interface HotelWebService {
     @WebMethod
     ArrayList<Chambre> getChambres();
     @WebMethod
+    Chambre getChambreByNumero(int i);
+    @WebMethod
     int getEtoiles();
     @WebMethod
     String getNom();
