@@ -22,27 +22,27 @@ CREATE TABLE aeroport (
     latitude NUMBER(9, 6),
     longitude NUMBER(9, 6),
     capacite NUMBER,
-    volInternational BOOLEAN,
+    volInternational NUMBER(1) CHECK (volInternational IN (0, 1)),
     distanceAvecVille NUMBER,
-    aeroportStatus bool
+    aeroportStatus NUMBER(1) CHECK (aeroportStatus IN (0, 1))
 );
 
 CREATE TABLE heure (
-    cle_heureDepart NUMBER PRIMARY KEY,
+    cle_heure NUMBER PRIMARY KEY,
     temps VARCHAR2(20),
     heure NUMBER,
-    minute NUMBER,
+    minutes NUMBER,
     seconde NUMBER,
-    am_pm VARCHAR2(2),
-    heureHiver BOOLEAN,
-    momentJournee NUMBER, mat soir apres midi
+    am_pm VARCHAR2(2) CHECK (am_pm IN ('am', 'pm')),
+    heureHiver NUMBER(1) CHECK (heureHiver IN (0, 1)),
+    momentJournee VARCHAR(20) CHECK (momentJournee IN ('matin', 'après-midi', 'soir')),
     quartHeure NUMBER,
-    heureTravail VARCHAR2(3)
+    heureTravail NUMBER(1) CHECK (heureTravail IN (0, 1))
 );
 
-CREATE TABLE date (
+CREATE TABLE r_date (
     cle_date NUMBER PRIMARY KEY,
-    date DATE,
+    r_date DATE,
     nombreJourMoisFiscal NUMBER,
     DateFinSemaineCivil DATE,
     numeroSemaine NUMBER,
@@ -51,7 +51,7 @@ CREATE TABLE date (
     semaine NUMBER,
     mois NUMBER,
     annee NUMBER,
-    vacances BOOLEAN
+    vacances NUMBER(1) CHECK (vacances IN (0, 1))
 );
 
 CREATE TABLE vol (
@@ -67,7 +67,8 @@ CREATE TABLE vol (
     revisionPar VARCHAR2(50)
 );
 
-CREATE TABLE ventes (
+CREATE TABLE vente (
+
     cle_client NUMBER,
     cle_aeroport NUMBER,
     cle_dateDepart NUMBER,
@@ -82,12 +83,13 @@ CREATE TABLE ventes (
     remise NUMBER(3, 2) CHECK (remise >= 0 AND remise <= 1),
     prixFinal NUMBER,
     id_vente NUMBER PRIMARY KEY,
-    FOREIGN KEY (cle_client) REFERENCES clients (cle_client),
-    FOREIGN KEY (cle_aeroport) REFERENCES aeroports (cle_aeroport),
-    FOREIGN KEY (cle_dateDepart) REFERENCES date (cle_dateDepart),
-    FOREIGN KEY (cle_dateArrivee) REFERENCES date (cle_dateArrivee),
-    FOREIGN KEY (cle_heureDepart) REFERENCES heure (cle_heureDepart),
-    FOREIGN KEY (cle_heureArrivee) REFERENCES heure (cle_heureArrivee),
-    FOREIGN KEY (cle_aeroportDepart) REFERENCES aeroports (cle_aeroport),
-    FOREIGN KEY (cle_aeroportArrivee) REFERENCES aeroports (cle_aeroport)
+    FOREIGN KEY (cle_client) REFERENCES client (cle_client),
+    FOREIGN KEY (cle_aeroport) REFERENCES aeroport (cle_aeroport),
+    FOREIGN KEY (cle_dateDepart) REFERENCES r_date (cle_date),
+    FOREIGN KEY (cle_dateArrivee) REFERENCES r_date (cle_date),
+    FOREIGN KEY (cle_heureDepart) REFERENCES heure (cle_heure),
+    FOREIGN KEY (cle_heureArrivee) REFERENCES heure (cle_heure),
+    FOREIGN KEY (cle_aeroportDepart) REFERENCES aeroport (cle_aeroport),
+    FOREIGN KEY (cle_aeroportArrivee) REFERENCES aeroport (cle_aeroport)
+
 );
