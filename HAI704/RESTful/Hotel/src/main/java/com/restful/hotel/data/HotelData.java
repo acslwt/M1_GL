@@ -15,13 +15,13 @@ public class HotelData {
    private Logger logger = LoggerFactory.getLogger(HotelData.class);
 
    @Bean
-    public CommandLineRunner initDataBase(HotelRepository hotelRepository){
+   public CommandLineRunner initDataBase(HotelRepository hotelRepository){
         return args->{
             logger.info("Ajout d'une donnée..."+hotelRepository.save(
-                 new Hotel("Ibis",new Adresse("France","Montpellier","Avenue Mendes France",7,134,130),3)
+                 new Hotel(1, "Ibis",new Adresse("France","Montpellier","Avenue Mendes France",7,134,130),3)
             ));
             logger.info("Ajout d'une donnée..."+hotelRepository.save(
-                    new Hotel("Krishna",new Adresse("France","Montpellier","Avenue de la Liberté",23,234,180),5)
+                    new Hotel(2, "Krishna",new Adresse("France","Montpellier","Avenue de la Liberté",23,234,180),5)
             ));
         };
     }

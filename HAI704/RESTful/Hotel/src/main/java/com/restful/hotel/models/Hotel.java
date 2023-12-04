@@ -1,11 +1,14 @@
 package com.restful.hotel.models;
 
+import jakarta.persistence.Entity;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class Hotel {
 
+    private long id;
     private String nom;
     private Adresse adresse;
     private int etoiles;
@@ -16,10 +19,19 @@ public class Hotel {
         this.adresse = new Adresse();
         this.etoiles = 0;
     }
-    public Hotel(String nom, Adresse adresse, int etoiles) {
+    public Hotel(long id, String nom, Adresse adresse, int etoiles) {
+        this.id = id;
         this.nom = nom;
         this.adresse = adresse;
         this.etoiles = etoiles;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public void addReservation(Reservation reservation){
@@ -37,6 +49,9 @@ public class Hotel {
         this.chambres = chambres;
     }
 
+    public void setAdresse(Adresse adresse){
+        this.adresse = adresse;
+    }
     public void addChambre(Chambre chambre){
         for(Chambre current_chambre : chambres){
             if(current_chambre.getNumero()==chambre.getNumero()){
