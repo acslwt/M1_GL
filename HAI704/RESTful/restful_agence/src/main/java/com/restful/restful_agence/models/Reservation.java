@@ -1,17 +1,24 @@
 package com.restful.restful_agence.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+
 import java.time.LocalDate;
 
+@Entity
 public class Reservation {
 
+    @Id
     private long id;
     private String client;
     private LocalDate debut;
     private LocalDate fin;
     private double prix;
+    @ManyToOne
     private Chambre chambre;
-    @SuppressWarnings("unused")
-    private Hotel hotel;
+    @ManyToOne
+    private Agence agence;
 
     public Reservation(Client client, Hotel hotel, String debutS, String finS, Chambre chambre) {
     }
@@ -53,13 +60,13 @@ public class Reservation {
         this.chambre = chambre;
     }
 
-    public Reservation(String client, LocalDate debut, LocalDate fin, double prix,Chambre chambre, Hotel hotel) {
+    public Reservation(String client, LocalDate debut, LocalDate fin, double prix,Chambre chambre, Agence agence) {
         this.client = client;
         this.debut = debut;
         this.fin = fin;
         this.prix = prix;
         this.chambre = chambre;
-        this.hotel = hotel;
+        this.agence = agence;
     }
 
 
@@ -67,16 +74,17 @@ public class Reservation {
         this.client = "null";
         this.debut = LocalDate.parse("2000-01-01");
         this.fin = LocalDate.parse("2000-01-01");
-        this.amount = 0;
-        this.hotel = new Hotel();
+        this.prix = 0;
+        this.agence = new Agence();
         this.chambre = new Chambre();
     }
     @Override
     public String toString() {
-        return "Reservation : " + client + "chambre n°" + chambre + "\n"+
+        return "Reservation : " + client + "chambre numero :" + chambre + "\n"+
                 "From " + debut + " to " + fin + "\n";
     }
 
     public Hotel getChambreReservee() {
+        return null;
     }
 }

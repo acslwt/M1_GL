@@ -1,7 +1,9 @@
 package com.restful.hotel.models;
 
+import com.restful.hotel.exceptions.ReservationException;
 import jakarta.persistence.*;
 
+import java.io.BufferedReader;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +16,7 @@ public class Hotel {
     @GeneratedValue
     private Long id;
     private String nom;
+    private String uri;
     @Embedded
     private Adresse adresse;
     private int etoiles;
@@ -94,7 +97,7 @@ public class Hotel {
         return liste_chambre;
     }
 
-    public int reserver(int numero_Chambre, Client client, String debutS, String finS){
+/*    public int reserver(int numero_Chambre, Client client, String debutS, String finS){
         Chambre chambre = this.getChambre(numero_Chambre);
         if(chambre.estDisponible(debutS,finS)) {
             Reservation reservation_client = new Reservation(client, this, debutS, finS, chambre);
@@ -105,7 +108,7 @@ public class Hotel {
             System.out.println("Chambre non disponible à cette date.");
             return 0;
         }
-    }
+    }*/
 
     @Override
     public boolean equals(Object o) {
@@ -135,4 +138,6 @@ public class Hotel {
     public Long getId() {
         return id;
     }
+
+
 }

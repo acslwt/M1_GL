@@ -2,10 +2,12 @@ package com.restful.restful_agence.models;
 
 import jakarta.persistence.*;
 
+import java.io.BufferedReader;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import com.restful.restful_agence.exceptions.ReservationException;
 public class Hotel {
 
     private Long id;
@@ -49,7 +51,7 @@ public class Hotel {
     public void addChambre(Chambre chambre){
         for(Chambre current_chambre : chambres){
             if(current_chambre.getNumero()==chambre.getNumero()){
-                System.out.println("Le numéro de chambre existe déjà");
+                System.out.println("Le numero de chambre existe deja");
                 return;
             }
         }
@@ -98,10 +100,10 @@ public class Hotel {
         if(chambre.estDisponible(debutS,finS)) {
             Reservation reservation_client = new Reservation(client, this, debutS, finS, chambre);
             chambre.addReservation(reservation_client);
-            System.out.println("Chambre réserver avec succès.");
+            System.out.println("Chambre reserver avec succes.");
             return 1;
         }else{
-            System.out.println("Chambre non disponible à cette date.");
+            System.out.println("Chambre non disponible a cette date.");
             return 0;
         }
     }
@@ -133,5 +135,31 @@ public class Hotel {
 
     public Long getId() {
         return id;
+    }
+
+    @SuppressWarnings("unused")
+    public Reservation reserver(BufferedReader reader, LocalDate in, LocalDate out, Chambre chambre) {
+        Reservation resa = null;
+        try {
+            System.out.println("Prenom : ");
+            String prenom = reader.readLine();
+            System.out.println("Nom : ");
+            String nom = reader.readLine();
+            System.out.println("E-mail : ");
+            String mail = reader.readLine();
+            System.out.println("Numero telephone : ");
+            String phone = reader.readLine();
+            System.out.println("Numero carte : ");
+            String num = reader.readLine();
+            System.out.println("CVV : ");
+            int cvv = Integer.parseInt(reader.readLine());
+            System.out.println("Date expiration (31/12) : ");
+            LocalDate exp = LocalDate.parse(reader.readLine());
+            resa = new Reservation(new Client(nom,prenom,new CarteCredit(nom,prenom,num,exp.toString(),cvv)), this,in.toString(), out.toString(),chambre);
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        return resa;
     }
 }

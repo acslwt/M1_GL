@@ -4,15 +4,11 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
 public class Agence {
-    @Id
     @GeneratedValue
-    @Column(name = "id")
     private long id;
     private String nomAgence;
-    @OneToMany(mappedBy="agency", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-    private List<Reservation> reservations;
+    private List<Hotel> hotels;
 
 
     public long getId() {
@@ -28,26 +24,26 @@ public class Agence {
         this.nomAgence = nomAgence;
     }
 
-    public List<Reservation> getReservations() {
-        return reservations;
+    public List<Hotel> getHotels() {
+        return hotels;
     }
-    public void setOffers(List<Reservation> reservations) {
-        this.reservations = reservations;
+    public void setOffers(List<Hotel> hotels) {
+        this.hotels = hotels;
     }
 
 
-    public Agence(String nomAgence, List<Reservation> offers) {
+    public Agence(String nomAgence, List<Hotel> hotels) {
         this.nomAgence = nomAgence;
-        this.reservations = offers;
+        this.hotels = hotels;
     }
     public Agence() {
         this.nomAgence = "agence de base";
-        this.reservations = new ArrayList<Reservation>();
+        this.hotels = new ArrayList<Hotel>();
     }
 
     @Override
     public String toString() {
-        return "Agence [nomAgence=" + nomAgence + ", reservations=" + reservations + "]";
+        return "Agence [nomAgence=" + nomAgence + ", hotels=" + hotels + "]";
     }
 
 

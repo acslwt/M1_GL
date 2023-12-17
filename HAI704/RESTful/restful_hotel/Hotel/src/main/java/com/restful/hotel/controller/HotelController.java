@@ -1,12 +1,17 @@
 package com.restful.hotel.controller;
 
 import com.restful.hotel.exceptions.HotelInexistantException;
+import com.restful.hotel.exceptions.HotelNotFoundException;
+import com.restful.hotel.models.Chambre;
 import com.restful.hotel.models.Hotel;
+import com.restful.hotel.models.Reservation;
 import com.restful.hotel.repositories.HotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -65,5 +70,34 @@ public class HotelController {
                         )));
         hotelRepository.delete(hotel);
 
+    }
+
+    @RequestMapping(
+            value = uri + "/hotels/search",
+            params = {"size", "rating", "datein", "dateout", "price" },
+            method = RequestMethod.GET)
+    @ResponseBody
+    public Hotel searchHotel(@RequestParam("size") int size, @RequestParam("rating") double rating,
+                             @RequestParam("datein") String datein, @RequestParam("dateout") String dateout, @RequestParam("price") double price) {
+        List<Hotel> hotels = hotelRepository.findAll();
+        int etoiles = hotels.get(0).getEtoiles();
+        LocalDate in = LocalDate.parse(datein);
+        LocalDate out = LocalDate.parse(dateout);
+        Hotel currentHotel = hotels.get(0);
+        List<Chambre> nouvelleChambres = new ArrayList<Chambre>();
+        if(etoiles >= rating) {
+            for (Chambre chambre : hotels.get(0).getChambres()) {
+                double roomPrice = chambre.getPrix();
+                int roomSize = chambre.getLits();
+                if(roomPrice <= price && roomSize >= size && chambre.estDisponible(in.toString(),out.toString())) {
+                    nouvelleChambres.add(chambre);
+                }
+            }
+            if(!nouvelleChambres.isEmpty()) {
+                currentHotel.setChambres(nouvelleChambres);
+                return currentHotel;
+            }
+        }
+        return new Hotel();
     }
 }
