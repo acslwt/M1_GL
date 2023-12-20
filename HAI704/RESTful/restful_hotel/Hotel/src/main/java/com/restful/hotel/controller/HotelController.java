@@ -1,10 +1,8 @@
 package com.restful.hotel.controller;
 
 import com.restful.hotel.exceptions.HotelInexistantException;
-import com.restful.hotel.exceptions.HotelNotFoundException;
 import com.restful.hotel.models.Chambre;
 import com.restful.hotel.models.Hotel;
-import com.restful.hotel.models.Reservation;
 import com.restful.hotel.repositories.HotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

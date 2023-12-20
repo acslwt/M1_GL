@@ -14,6 +14,7 @@ public class Hotel {
     private String nom;
     private Adresse adresse;
     private int etoiles;
+    private String uri;
     private List<Chambre> chambres;
 
     public Hotel(){
@@ -161,5 +162,13 @@ public class Hotel {
             e.printStackTrace();
         }
         return resa;
+    }
+
+    public String getUri() {
+        return uri;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
     }
 }

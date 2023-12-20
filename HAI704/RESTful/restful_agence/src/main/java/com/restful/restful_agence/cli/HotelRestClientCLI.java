@@ -2,11 +2,13 @@ package com.restful.restful_agence.cli;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.restful.restful_agence.exceptions.ReservationException;
+import com.restful.restful_agence.models.Adresse;
 import com.restful.restful_agence.models.Chambre;
 import com.restful.restful_agence.models.Hotel;
 import com.restful.restful_agence.models.Reservation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -17,28 +19,26 @@ import java.time.LocalDate;
 import java.util.*;
 
 @Component
-public class HotelRestClientCLI extends com.restful.hotel.cli.AbstractMain implements CommandLineRunner {
+public class HotelRestClientCLI extends AbstractMain implements CommandLineRunner {
 
     @Autowired
     private RestTemplate proxy;
-    private String URI_HOTEL;
-    private String URI_HOTEL_ID;
+    private static String URI_HOTEL;
+    private static String URI_HOTEL_ID;
     private static Map<String, String> URIS;
     @Override
     protected boolean validServiceUrl() {
-        return false;
+        return SERVICE_URL.equals("http://localhost:8080/hotelwebservice/api");
     }
 
     @Override
     protected void menu() {
         StringBuilder builder = new StringBuilder();
-        builder.append(QUIT+"Quitter.");
-        builder.append("\n1.Nombre hotels");
-        builder.append("\n2.Voir tous les hotels.");
-        builder.append("\n3.Lhotel par ID.");
-        builder.append("\n4.Ajouter hotel");
-        builder.append("\n5.Supprimer hotel");
-        builder.append("\n6.Mettre a jour un hotel");
+        builder.append("\n1. Nombre hotels");
+        builder.append("\n2. Reserver");
+        builder.append("\n3. Lhotel par ID.");
+        builder.append("\n4. Tous les hotels");
+        builder.append("\n"+QUIT+". Quitter.");
 
         System.out.println(builder);
 
@@ -54,9 +54,7 @@ public class HotelRestClientCLI extends com.restful.hotel.cli.AbstractMain imple
             URI_HOTEL = "hotels";
             URI_HOTEL_ID = URI_HOTEL + "/{id}";
             URIS = new HashMap<String, String>();
-            URIS.put(SERVICE_URL1 + "hotels", SERVICE_URL1 + URI_HOTEL_ID);
-            URIS.put(SERVICE_URL2 + "hotels", SERVICE_URL2 + URI_HOTEL_ID);
-            URIS.put(SERVICE_URL3 + "hotels", SERVICE_URL3 + URI_HOTEL_ID);
+            URIS.put(SERVICE_URL + "hotels", SERVICE_URL + URI_HOTEL_ID);
             do {
                 menu();
                 userInput = inputReader.readLine();
@@ -103,17 +101,17 @@ public class HotelRestClientCLI extends com.restful.hotel.cli.AbstractMain imple
                     break;
 
                 case "2":
-                    System.out.println("Where do you want to go ? (City or country)\n");
+                    System.out.println("Pays ? Ville ?\n");
                     String position = reader.readLine();
-                    System.out.println("\nRating: ");
+                    System.out.println("\nEtoiles: ");
                     double rating = Double.parseDouble(reader.readLine());
-                    System.out.println("\nPrice: ");
+                    System.out.println("\nPrix: ");
                     double price = Double.parseDouble(reader.readLine());
-                    System.out.println("\nDate in: ");
+                    System.out.println("\nArrivé: ");
                     String inDate = "2022-05-05";
-                    System.out.println("\nDate out: ");
+                    System.out.println("\nDepart: ");
                     String outDate = "2022-05-06";
-                    System.out.println("\nNumber of persons: ");
+                    System.out.println("\nNombre de personne: ");
                     int size = Integer.parseInt(reader.readLine());
                     params.put("position", position);
                     params.put("datein", inDate);
@@ -184,11 +182,27 @@ public class HotelRestClientCLI extends com.restful.hotel.cli.AbstractMain imple
 
                     break;
 
+                case "3":
+                    System.out.println("Quel est l'id ?\n");
+                    String id = reader.readLine();
+                    String uri = SERVICE_URL + "/hotels/"+id;
+                    Hotel hotel = proxy.getForObject(uri, Hotel.class, params);
+                    System.out.println(hotel.toString());
+
+                    break;
+
+                case "4":
+                    uri = SERVICE_URL +"/hotels";
+                    ResponseEntity<Hotel[]> response = proxy.getForEntity(uri, Hotel[].class);
+                    Hotel[] hotels = response.getBody();
+                    List<Hotel> list_hotels = Arrays.asList(hotels);
+                    System.out.println(list_hotels);
+                    break;
                 case QUIT:
-                    System.out.println("Bye bye...");
+                    System.out.println("Bisous...");
                     return;
                 default:
-                    System.err.println("Wrong input. Try again: ");
+                    System.err.println("Choix non existant");
                     return;
             }
         }

@@ -1,4 +1,4 @@
-package com.restful.hotel.client;
+package com.restful.restful_agence.client;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
