@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilan eFootball PES 2021</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="bilan-container">
+        <h1>Bilan eFootball PES 2021</h1>
+        <div id="resultats"></div>
+        <canvas id="radarChart"></canvas>
+    </div>
+
+    <script>
+
+        // Utilisez AJAX pour récupérer les résultats depuis la base de données
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "get_results.php", true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var results = JSON.parse(xhr.responseText);
+                displayResults(results);
+            }
+        };
+        xhr.send();
+
+        function displayResults(results) {
+            // Affichez les résultats sur la page
+            var resultatsDiv = document.getElementById("resultats");
+            resultatsDiv.innerHTML = "<h2>Voici vos résultats :</h2>";
+
+            for (var theme in results) {
+                if (results.hasOwnProperty(theme)) {
+                    var note = results[theme];
+                    resultatsDiv.innerHTML += "<p>" + theme + ": " + note.toFixed(2) + "</p>";
+                }
+            }
+
+            // Créez le graphique radar
+            const config = {
+                type: 'radar',
+                data: {
+                    labels: ['Santé', 'Social', 'Professionnel', 'Financier'],
+                    datasets: [{
+                        data: [1.0, 2.5, 4.5, 3.0],
+                        fill: true,
+                        backgroundColor: 'rgba(255, 99, 132,0.2)',
+                        borderColor: 'rgb(255, 99, 132)',
+                        pointBackgroundColor: 'rgb(255, 99, 132)',
+                        pointBorderColor: '#fff',
+                    }, {
+                        data: [5, 5, 5, 5],
+                        fill: true,
+                        backgroundColor: 'rgba(255, 255, 255,0.2)',
+                        borderColor: 'rgba(255, 255, 255,0)',
+                        pointBackgroundColor: 'rgba(255, 255, 255,0)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor:'rgba(255, 255, 255,0)'
+                    },
+                    {
+                        data: [0, 0, 0, 0],
+                        fill: true,
+                        backgroundColor: 'rgba(255, 255, 255,0.2)',
+                        borderColor: 'rgba(255, 255, 255,0)',
+                        pointBackgroundColor: 'rgba(255, 255, 255,0)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor:'rgba(255, 255, 255,0)'
+                    }]
+                },
+                options: {
+                    elements: {
+                        line: {
+                            borderWidth: 3
+                        }
+                    },
+                    scale: {
+                        ticks: {
+                            beginAtZero: false,
+                            min: 1,
+                            max: 5.0,
+                            stepSize: 1,
+                        }
+                    }
+                }
+            };
+
+            var ctx = document.getElementById('radarChart').getContext('2d');
+            var myRadarChart = new Chart(ctx, config);
+        }
+    </script>
+</body>
+</html>

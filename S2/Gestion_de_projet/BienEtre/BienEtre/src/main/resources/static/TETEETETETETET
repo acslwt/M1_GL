@@ -1,0 +1,25 @@
+/*
+           // Utilisez AJAX pour récupérer les résultats depuis la base de données
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "get_results.php", true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var results = JSON.parse(xhr.responseText);
+                displayResults(results);
+            }
+        };
+        xhr.send();
+
+        function displayResults(results) {
+            // Affichez les résultats sur la page
+            var resultatsDiv = document.getElementById("resultats");
+            resultatsDiv.innerHTML = "<h2>Voici vos résultats :</h2>";
+
+            for (var theme in results) {
+                if (results.hasOwnProperty(theme)) {
+                    var note = results[theme];
+                    resultatsDiv.innerHTML += "<p>" + theme + ": " + note.toFixed(2) + "</p>";
+                }
+            }
+        }
+        */
